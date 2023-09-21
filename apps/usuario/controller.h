@@ -1,0 +1,63 @@
+#ifndef CONTROLLER
+#define CONTROLLER
+
+#include <string>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+
+class User
+{
+public:
+    User(const std::string &email, const std::string &password, const std::string &name, double money, const std::string &role, bool state)
+        : email(email), password(password), name(name), money(money), role(role), state(state){};
+
+    std::string getEmail() const
+    {
+        return email;
+    };
+    std::string getPassword() const
+    {
+        return password;
+    };
+    std::string getName() const
+    {
+        return name;
+    };
+    double getMoney() const
+    {
+        return money;
+    };
+    std::string getRole() const
+    {
+        return role;
+    };
+    bool getState() const
+    {
+        return state;
+    };
+
+    // Puedes agregar otros métodos y setters según sea necesario
+
+    json toJson() const
+    {
+        json userJson = {
+            {"email", email},
+            {"password", password},
+            {"name", name},
+            {"money", money},
+            {"role", role},
+            {"state", state}};
+        return userJson;
+    };
+
+private:
+    std::string email;
+    std::string password;
+    std::string name;
+    double money;
+    std::string role;
+    bool state;
+};
+
+#endif // USER_H

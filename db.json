@@ -1,0 +1,15 @@
+{
+  "config": "",
+  "db": {
+    "tables": {
+      "products": [
+        {
+          "name": "Leche",
+          "price": 2.99,
+          "stock": 50
+        }
+      ],
+      "users": {}
+    }
+  }
+}
