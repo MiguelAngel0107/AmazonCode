@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "apps/usuario/controller.h"
+#include "apps/producto/controller.h"
 
 using json = nlohmann::json;
 
@@ -41,15 +42,12 @@ public:
     };
 
     // Métodos para acceder y manipular los datos en la base de datos JSON
-    void addProduct(const std::string &name, double price, int stock)
+    bool addProduct(const std::string &name, double price, int stock)
     {
-        // Agregar un nuevo producto a la base de datos
-        json newProduct = {
-            {"name", name},
-            {"price", price},
-            {"stock", stock}};
-
-        database["db"]["tables"]["products"].push_back(newProduct);
+        Product newProduct(name, price, stock);
+        database["db"]["tables"]["products"].push_back(newProduct.toJson());
+        save();
+        return true;
     };
 
     bool createUser(const std::string &email, const std::string &password, const std::string &name, double money, const std::string &role, bool state)
@@ -60,8 +58,6 @@ public:
         {
             User newUser(email, password, name, money, role, state);
             database["db"]["tables"]["users"].push_back(newUser.toJson());
-            save();
-            return true;
             save();
             return true;
         }
@@ -99,6 +95,17 @@ private:
         for (const auto &user : database["db"]["tables"]["users"])
         {
             if (user["email"] == email)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    bool productExists(const std::string &name) const
+    {
+        for (const auto &product : database["db"]["tables"]["products"])
+        {
+            if (product["name"] == name)
             {
                 return true;
             }
