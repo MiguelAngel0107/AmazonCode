@@ -1,5 +1,5 @@
-#ifndef CONTROLLER
-#define CONTROLLER
+#ifndef USER_H
+#define USER_H
 
 #include <string>
 #include <nlohmann/json.hpp>
@@ -9,7 +9,7 @@ using json = nlohmann::json;
 class User
 {
 public:
-    User(const std::string &email, const std::string &password, const std::string &name, double money, const std::string &role, bool state)
+    User(int id, const std::string &email, const std::string &password, const std::string &name, double money, const std::string &role, bool state)
         : email(email), password(password), name(name), money(money), role(role), state(state){};
 
     std::string getEmail() const
@@ -42,6 +42,7 @@ public:
     json toJson() const
     {
         json userJson = {
+            {'id', id},
             {"email", email},
             {"password", password},
             {"name", name},
@@ -52,6 +53,7 @@ public:
     };
 
 private:
+    int id;
     std::string email;
     std::string password;
     std::string name;

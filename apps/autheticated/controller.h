@@ -1,6 +1,6 @@
 // Authentication.h
-#ifndef CONTROLLER
-#define CONTROLLER
+#ifndef AUTHENTICATED_H
+#define AUTHENTICATED_H
 
 #include <string>
 #include "apps/usuario/controller.h"

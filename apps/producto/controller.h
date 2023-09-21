@@ -1,6 +1,7 @@
 #ifndef PRODUCT_H
 #define PRODUCT_H
 
+#include "apps/categoria/controller.h"
 #include <string>
 #include <nlohmann/json.hpp>
 
@@ -9,7 +10,7 @@ using json = nlohmann::json;
 class Product
 {
 public:
-    Product(const std::string &name, double price, int stock) : name(name), price(price), stock(stock){};
+    Product(int id, const std::string &name, double price, int stock, const Category &category) : name(name), price(price), stock(stock), category(category){};
 
     std::string getName() const
     {
@@ -23,10 +24,15 @@ public:
     {
         return stock;
     };
+    const Category &getCategory() const
+    {
+        return category;
+    };
 
     json toJson() const
     {
         json productJson = {
+            {'id', id},
             {"name", name},
             {"price", price},
             {"stock", stock},
@@ -35,9 +41,11 @@ public:
     };
 
 private:
+    int id;
     std::string name;
     double price;
     int stock;
+    Category category;
 };
 
 #endif // PRODUCT_H

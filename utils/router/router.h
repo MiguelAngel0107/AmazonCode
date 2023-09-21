@@ -6,8 +6,11 @@
 #include <fstream>
 #include <iostream>
 
+#include "utils/gen/generateId.h"
+
 #include "apps/usuario/controller.h"
 #include "apps/producto/controller.h"
+#include "apps/categoria/controller.h"
 
 using json = nlohmann::json;
 
@@ -42,9 +45,12 @@ public:
     };
 
     // Métodos para acceder y manipular los datos en la base de datos JSON
-    bool addProduct(const std::string &name, double price, int stock)
+    bool addProduct(const std::string &name, double price, int stock, Category category)
     {
-        Product newProduct(name, price, stock);
+        // Genera un ID único para el nuevo producto
+        int productId = UniqueIdGenerator::generateUniqueId();
+
+        Product newProduct(productId, name, price, stock, category);
         database["db"]["tables"]["products"].push_back(newProduct.toJson());
         save();
         return true;
@@ -56,7 +62,10 @@ public:
         // Si el usuario no existe, crear una instancia de User y agregarlo a la base de datos JSON
         if (!userExists(email))
         {
-            User newUser(email, password, name, money, role, state);
+            // Genera un ID único para el nuevo producto
+            int userId = UniqueIdGenerator::generateUniqueId();
+
+            User newUser(userId, email, password, name, money, role, state);
             database["db"]["tables"]["users"].push_back(newUser.toJson());
             save();
             return true;
