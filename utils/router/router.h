@@ -5,10 +5,11 @@
 #include <nlohmann/json.hpp>
 #include <fstream>
 #include <iostream>
-#include "utils/gen/generateId.h"
-#include "apps/usuario/controller.h"
-#include "apps/producto/controller.h"
-#include "apps/categoria/controller.h"
+
+#include "../gen/generateId.h"
+#include "../../apps/usuario/controller.h"
+#include "../../apps/producto/controller.h"
+#include "../../apps/categoria/controller.h"
 
 using json = nlohmann::json;
 
@@ -49,8 +50,27 @@ public:
         int productId = UniqueIdGenerator::generateUniqueId();
 
         Product newProduct(productId, name, price, stock, category);
-        database["db"]["tables"]["products"].push_back(newProduct.toJson());
-        save();
+
+        json newProductJson = newProduct.toJson();
+        std::string jsonString = newProductJson.dump();
+        std::cout << "Contenido de newProduct.toJson(): " << jsonString << std::endl;
+
+        try
+        {
+            // Intenta agregar un objeto JSON al arreglo
+            database["db"]["tables"]["products"].push_back({{"name", name},
+                                                            {"price", price},
+                                                            {"stock", stock}});
+
+            // Si no se produce ninguna excepción, el objeto JSON se agregó con éxito
+            std::cout << "El objeto JSON se agregó correctamente." << std::endl;
+        }
+        catch (const json::exception &e)
+        {
+            // Captura y maneja la excepción
+            std::cerr << "Error al agregar el objeto JSON: " << e.what() << std::endl;
+        }
+
         return true;
     };
 
@@ -64,8 +84,18 @@ public:
             int userId = UniqueIdGenerator::generateUniqueId();
 
             User newUser(userId, email, password, name, money, role, state);
-            database["db"]["tables"]["users"].push_back(newUser.toJson());
-            save();
+
+            json newUserJson = newUser.toJson();
+            std::string jsonString = newUserJson.dump();
+            std::cout << "Contenido de newUser.toJson(): " << jsonString << std::endl;
+
+            // database["db"]["tables"]["users"].push_back({{"email", email},
+            //                                              {"password", password},
+            //                                              {"name", name},
+            //                                              {"money", money},
+            //                                              {"role", role},
+            //                                              {"state", state}});
+
             return true;
         }
         return false; // El usuario ya existe

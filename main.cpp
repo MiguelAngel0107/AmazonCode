@@ -1,10 +1,11 @@
 #include <iostream>
 #include "utils/router/router.h"
+#include "apps/categoria/controller.h"
 
 int main()
 {
     // Nombre del archivo JSON
-    std::string databaseFilename = "C:\\Users\\Miguel\\Desktop\\AmazonCode\\db.json";
+    std::string databaseFilename = "D:\\2023 Proyectos Mas avanzados\\UpcProyects\\AmazonCode\\db.json";
 
     // Crear una instancia de JsonDatabase
     JsonDatabase database(databaseFilename);
@@ -15,6 +16,10 @@ int main()
         std::cerr << "No se pudo cargar la base de datos." << std::endl;
         return 1; // Salir con código de error
     }
+
+    Category categoria(1, "primera");
+
+    database.addProduct("Carne Nueva Vaca 225235", 2.99, 50, categoria);
 
     // Crear un nuevo usuario
     std::string email = "usuario@example.com";
@@ -35,22 +40,11 @@ int main()
         std::cerr << "No se pudo crear el usuario. El usuario ya existe." << std::endl;
     }
 
-    // Leer la lista de usuarios desde la base de datos
-    std::vector<User> usersList = database.getUsers();
-
-    // Mostrar la lista de usuarios
-    std::cout << "Lista de usuarios:" << std::endl;
-    for (const User &user : usersList)
+    if (!database.save())
     {
-        std::cout << "ID: " << user.getId() << std::endl;
-        std::cout << "Email: " << user.getEmail() << std::endl;
-        std::cout << "Nombre: " << user.getName() << std::endl;
-        std::cout << "Saldo: " << user.getMoney() << std::endl;
-        std::cout << "Rol: " << user.getRole() << std::endl;
-        std::cout << "Estado: " << (user.getState() ? "Activo" : "Inactivo") << std::endl;
-        std::cout << "-----------------------" << std::endl;
+        std::cerr << "No se pudo guardar la base de datos." << std::endl;
+        return 1; // Salir con código de error
     }
-
     // Imprimir la base de datos para verificar
     std::cout << "Base de datos actualizada:\n";
     std::cout << std::setw(4) << database.load() << std::endl;

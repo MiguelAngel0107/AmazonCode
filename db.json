@@ -1,15 +1,30 @@
 {
-  "config": "",
-  "db": {
-    "tables": {
-      "products": [
-        {
-          "name": "Leche",
-          "price": 2.99,
-          "stock": 50
+    "config": "",
+    "db": {
+        "tables": {
+            "products": [
+                {
+                    "name": "Carne Nueva Vaca",
+                    "price": 2.99,
+                    "stock": 50
+                },
+                {
+                    "name": "Carne Nueva Vaca",
+                    "price": 2.99,
+                    "stock": 50
+                },
+                {
+                    "name": "Carne Nueva Vaca",
+                    "price": 2.99,
+                    "stock": 50
+                },
+                {
+                    "name": "Carne Nueva Vaca 225235",
+                    "price": 2.99,
+                    "stock": 50
+                }
+            ],
+            "users": []
         }
-      ],
-      "users": {}
     }
-  }
 }

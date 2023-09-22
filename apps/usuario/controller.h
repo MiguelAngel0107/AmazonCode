@@ -10,7 +10,7 @@ class User
 {
 public:
     User(int id, const std::string &email, const std::string &password, const std::string &name, double money, const std::string &role, bool state)
-        : email(email), password(password), name(name), money(money), role(role), state(state){};
+        : id(id), email(email), password(password), name(name), money(money), role(role), state(state){};
 
     int getId() const
     {
@@ -46,7 +46,7 @@ public:
     json toJson() const
     {
         json userJson = {
-            {'id', id},
+            {"id", id},
             {"email", email},
             {"password", password},
             {"name", name},

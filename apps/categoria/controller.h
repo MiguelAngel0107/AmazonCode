@@ -7,7 +7,7 @@
 class Category
 {
 public:
-    Category(int id, const std::string &name) : name(name){};
+    Category(int id, const std::string &name) : id(id), name(name){};
 
     std::string getName() const
     {
