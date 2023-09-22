@@ -3,16 +3,7 @@
     "db": {
         "tables": {
             "products": [
-                {
-                    "name": "Carne Nueva Vaca 225235",
-                    "price": 2.99,
-                    "stock": 50
-                },
-                {
-                    "name": "Carne Nueva Vaca 225235",
-                    "price": 2.99,
-                    "stock": 50
-                }
+                
             ],
             "users": [
                 {
