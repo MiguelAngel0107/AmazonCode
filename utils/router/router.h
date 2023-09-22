@@ -85,11 +85,8 @@ public:
 
             User newUser(userId, email, password, name, money, role, state);
 
-            json newUserJson = newUser.toJson();
-            std::string jsonString = newUserJson.dump();
-            std::cout << "Contenido de newUser.toJson(): " << jsonString << std::endl;
-
-            database["db"]["tables"]["users"].push_back({{"email", email},
+            database["db"]["tables"]["users"].push_back({{"id", userId},
+                                                         {"email", email},
                                                          {"password", password},
                                                          {"name", name},
                                                          {"money", money},
@@ -101,29 +98,23 @@ public:
         return false; // El usuario ya existe
     }
 
-    std::vector<User> getUsers() const
+    User getUser(const std::string &email)
     {
-        std::vector<User> usersList;
-
+        // Busca el usuario por su correo electrónico
         for (const auto &userJson : database["db"]["tables"]["users"])
         {
-            // Lee los datos del usuario desde el objeto JSON y crea una instancia de User
-            User user(
-                userJson["id"], // Asegúrate de que la clase User tenga un constructor que acepte el ID
-                userJson["email"],
-                userJson["password"],
-                userJson["name"],
-                userJson["money"],
-                userJson["role"],
-                userJson["state"]);
-
-            usersList.push_back(user);
+            if (userJson["email"] == email)
+            {
+                std::cout << "User: " << userJson["email"];
+                User user(userJson["id"], userJson["email"], userJson["password"], userJson["name"], userJson["money"], userJson["role"], userJson["state"]);
+                return user;
+            }
         }
 
-        return usersList;
+        // Si no se encuentra el usuario, devuelve un usuario vacío
+        return User(0, "", "", "", 0.0, "", false);
     }
 
-    // Agregar más métodos según tus necesidades
 
 private:
     std::string filename;

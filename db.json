@@ -4,26 +4,6 @@
         "tables": {
             "products": [
                 {
-                    "name": "Carne Nueva Vaca",
-                    "price": 2.99,
-                    "stock": 50
-                },
-                {
-                    "name": "Carne Nueva Vaca",
-                    "price": 2.99,
-                    "stock": 50
-                },
-                {
-                    "name": "Carne Nueva Vaca",
-                    "price": 2.99,
-                    "stock": 50
-                },
-                {
-                    "name": "Carne Nueva Vaca 225235",
-                    "price": 2.99,
-                    "stock": 50
-                },
-                {
                     "name": "Carne Nueva Vaca 225235",
                     "price": 2.99,
                     "stock": 50
@@ -36,7 +16,8 @@
             ],
             "users": [
                 {
-                    "email": "usuario@example.com",
+                    "email": "miguel@example.com",
+                    "id": 275813,
                     "money": 1000.0,
                     "name": "Nombre del Usuario",
                     "password": "contrasena123",

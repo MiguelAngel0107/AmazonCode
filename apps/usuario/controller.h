@@ -2,9 +2,6 @@
 #define USER_H
 
 #include <string>
-#include <nlohmann/json.hpp>
-
-using json = nlohmann::json;
 
 class User
 {
@@ -15,46 +12,72 @@ public:
     int getId() const
     {
         return id;
-    };
+    }
+
+    void setId(int newId)
+    {
+        id = newId;
+    }
+
     std::string getEmail() const
     {
         return email;
-    };
+    }
+
+    void setEmail(const std::string &newEmail)
+    {
+        email = newEmail;
+    }
+
     std::string getPassword() const
     {
         return password;
-    };
+    }
+
+    void setPassword(const std::string &newPassword)
+    {
+        password = newPassword;
+    }
+
     std::string getName() const
     {
         return name;
-    };
+    }
+
+    void setName(const std::string &newName)
+    {
+        name = newName;
+    }
+
     double getMoney() const
     {
         return money;
-    };
+    }
+
+    void setMoney(double newMoney)
+    {
+        money = newMoney;
+    }
+
     std::string getRole() const
     {
         return role;
-    };
+    }
+
+    void setRole(const std::string &newRole)
+    {
+        role = newRole;
+    }
+
     bool getState() const
     {
         return state;
-    };
+    }
 
-    // Puedes agregar otros métodos y setters según sea necesario
-
-    json toJson() const
+    void setState(bool newState)
     {
-        json userJson = {
-            {"id", id},
-            {"email", email},
-            {"password", password},
-            {"name", name},
-            {"money", money},
-            {"role", role},
-            {"state", state}};
-        return userJson;
-    };
+        state = newState;
+    }
 
 private:
     int id;
