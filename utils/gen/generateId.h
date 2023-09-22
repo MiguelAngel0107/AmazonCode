@@ -12,6 +12,4 @@ public:
     }
 };
 
-// ...
 
-int id = UniqueIdGenerator::generateUniqueId();

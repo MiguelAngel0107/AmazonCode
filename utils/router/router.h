@@ -5,9 +5,7 @@
 #include <nlohmann/json.hpp>
 #include <fstream>
 #include <iostream>
-
 #include "utils/gen/generateId.h"
-
 #include "apps/usuario/controller.h"
 #include "apps/producto/controller.h"
 #include "apps/categoria/controller.h"
@@ -72,6 +70,29 @@ public:
         }
         return false; // El usuario ya existe
     }
+
+    std::vector<User> getUsers() const
+    {
+        std::vector<User> usersList;
+
+        for (const auto &userJson : database["db"]["tables"]["users"])
+        {
+            // Lee los datos del usuario desde el objeto JSON y crea una instancia de User
+            User user(
+                userJson["id"], // Asegúrate de que la clase User tenga un constructor que acepte el ID
+                userJson["email"],
+                userJson["password"],
+                userJson["name"],
+                userJson["money"],
+                userJson["role"],
+                userJson["state"]);
+
+            usersList.push_back(user);
+        }
+
+        return usersList;
+    }
+
     // Agregar más métodos según tus necesidades
 
 private:

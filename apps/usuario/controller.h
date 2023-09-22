@@ -12,6 +12,10 @@ public:
     User(int id, const std::string &email, const std::string &password, const std::string &name, double money, const std::string &role, bool state)
         : email(email), password(password), name(name), money(money), role(role), state(state){};
 
+    int getId() const
+    {
+        return id;
+    };
     std::string getEmail() const
     {
         return email;
