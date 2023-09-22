@@ -89,12 +89,12 @@ public:
             std::string jsonString = newUserJson.dump();
             std::cout << "Contenido de newUser.toJson(): " << jsonString << std::endl;
 
-            // database["db"]["tables"]["users"].push_back({{"email", email},
-            //                                              {"password", password},
-            //                                              {"name", name},
-            //                                              {"money", money},
-            //                                              {"role", role},
-            //                                              {"state", state}});
+            database["db"]["tables"]["users"].push_back({{"email", email},
+                                                         {"password", password},
+                                                         {"name", name},
+                                                         {"money", money},
+                                                         {"role", role},
+                                                         {"state", state}});
 
             return true;
         }

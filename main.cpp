@@ -17,6 +17,10 @@ int main()
         return 1; // Salir con código de error
     }
 
+
+
+
+
     Category categoria(1, "primera");
 
     database.addProduct("Carne Nueva Vaca 225235", 2.99, 50, categoria);
@@ -40,14 +44,17 @@ int main()
         std::cerr << "No se pudo crear el usuario. El usuario ya existe." << std::endl;
     }
 
+
+
+
+
+
     if (!database.save())
     {
         std::cerr << "No se pudo guardar la base de datos." << std::endl;
         return 1; // Salir con código de error
     }
-    // Imprimir la base de datos para verificar
-    std::cout << "Base de datos actualizada:\n";
-    std::cout << std::setw(4) << database.load() << std::endl;
+
 
     return 0;
 }
