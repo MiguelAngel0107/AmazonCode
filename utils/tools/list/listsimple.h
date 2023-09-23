@@ -1,21 +1,29 @@
 #include <iostream>
+#include <functional>
 #include "../generic/nodo.h"
 
-class ListaEnlazada {
+template <class typeValue>
+class ListaEnlazada
+{
 private:
-    Nodo* cabeza; // Puntero al primer nodo de la lista
+    NodoComplejo<typeValue> *cabeza; // Puntero al primer nodo de la lista
 
 public:
     ListaEnlazada() : cabeza(nullptr) {}
 
     // Agregar un elemento al final de la lista
-    void agregar(int val) {
-        Nodo* nuevoNodo = new Nodo(val);
-        if (!cabeza) {
+    void agregar(const typeValue &val)
+    {
+        NodoComplejo<typeValue> *nuevoNodo = new NodoComplejo<typeValue>(val);
+        if (!cabeza)
+        {
             cabeza = nuevoNodo;
-        } else {
-            Nodo* actual = cabeza;
-            while (actual->siguiente) {
+        }
+        else
+        {
+            NodoComplejo<typeValue> *actual = cabeza;
+            while (actual->siguiente)
+            {
                 actual = actual->siguiente;
             }
             actual->siguiente = nuevoNodo;
@@ -23,20 +31,40 @@ public:
     }
 
     // Imprimir la lista
-    void imprimir() {
-        Nodo* actual = cabeza;
-        while (actual) {
+    void imprimir()
+    {
+        NodoComplejo<typeValue> *actual = cabeza;
+        while (actual)
+        {
             std::cout << actual->valor << " ";
             actual = actual->siguiente;
         }
         std::cout << std::endl;
     }
 
+    bool imprimirFunction(std::function<bool(const User &)> callback)
+    {
+        NodoComplejo<typeValue> *actual = cabeza;
+        while (actual)
+        {
+            if (callback(actual->valor)) return true;
+            actual = actual->siguiente;
+        }
+        return false;
+    }
+
+    typeValue getCabeza()
+    {
+        return cabeza->valor;
+    }
+
     // Liberar la memoria de la lista
-    ~ListaEnlazada() {
-        Nodo* actual = cabeza;
-        while (actual) {
-            Nodo* siguiente = actual->siguiente;
+    ~ListaEnlazada()
+    {
+        NodoComplejo<typeValue> *actual = cabeza;
+        while (actual)
+        {
+            NodoComplejo<typeValue> *siguiente = actual->siguiente;
             delete actual;
             actual = siguiente;
         }

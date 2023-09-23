@@ -5,42 +5,59 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include "../usuario/controller.h"
+#include "../../utils/router/router.h"
+#include "../../utils/tools/generic/nodo.h"
 
-class formLogin {
+class FormLogin
+{
 private:
     std::unordered_map<std::string, std::string> userDatabase;
+    ListaEnlazada<User> listaUsuarios;
 
 public:
-    formLogin() {
-        // Simulamos una base de datos de usuarios con correos y contraseñas.
-        // Puedes reemplazar esto con una base de datos real en tu aplicación.
-        userDatabase["usuario1@example.com"] = "contraseña1";
-        userDatabase["usuario2@example.com"] = "contraseña2";
-        userDatabase["usuario3@example.com"] = "contraseña3";
+    FormLogin(JsonDatabase db)
+    {
+        listaUsuarios = db.getUsersDB();
     }
 
-    bool loginUser() {
+    bool loginUser()
+    {
         std::string correo, contraseña;
         std::cout << "Ingrese su correo: ";
         std::cin >> correo;
 
-        // Verificar si el correo está en la base de datos.
-        if (userDatabase.find(correo) == userDatabase.end()) {
-            std::cout << "El correo no está registrado. Debe registrarse primero." << std::endl;
+
+        auto funcionAuxiliar = [&](const User &usuario)
+        {
+            // std::cout << "Entre a la Call Funcion" << std::endl;
+            if (usuario.getEmail() == correo)
+            {
+                std::cout << "Ingrese su contraseña: ";
+                std::cin >> contraseña;
+
+                // Verificar si la contraseña coincide con la del usuario
+                if (usuario.getPassword() == contraseña)
+                {
+                    std::cout << "Inicio de sesión exitoso." << std::endl;
+                    return true;
+                }
+                else
+                {
+                    std::cout << "Contraseña incorrecta. Ingrese nuevamente." << std::endl;
+                    return false;
+                }
+            }
             return false;
-        }
+        };
 
-        std::cout << "Ingrese su contraseña: ";
-        std::cin >> contraseña;
+        if (listaUsuarios.imprimirFunction(funcionAuxiliar))
+            return true;
 
-        // Verificar si la contraseña coincide con la de la base de datos.
-        if (userDatabase[correo] != contraseña) {
-            std::cout << "Contraseña incorrecta. Ingrese nuevamente." << std::endl;
-            return false;
-        }
-
-        std::cout << "Inicio de sesión exitoso." << std::endl;
-        return true;
+        // Si no se encuentra el correo en la lista
+        std::cout
+            << "El correo no está registrado. Debe registrarse primero." << std::endl;
+        return false;
     }
 };
 

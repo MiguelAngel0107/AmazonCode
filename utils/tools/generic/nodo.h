@@ -1,11 +1,26 @@
+#ifndef NODO_H
+#define NODO_H
+
 #include <iostream>
 
-class Nodo {
+template <typename T>
+class NodoNormal
+{
 public:
-    int valor;
-    Nodo* siguiente;
+    T valor;
+    NodoNormal<T> *siguiente;
 
-    Nodo(int val) : valor(val), siguiente(nullptr) {}
+    NodoNormal<T>(T val) : valor(val), siguiente(nullptr) {}
 };
 
+template <class C>
+class NodoComplejo
+{
+public:
+    C valor;
+    NodoComplejo<C> *siguiente;
 
+    NodoComplejo<C>(C val) : valor(val), siguiente(nullptr) {}
+};
+
+#endif // NODO_H

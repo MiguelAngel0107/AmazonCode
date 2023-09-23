@@ -3,10 +3,11 @@
 
 #include <iostream>
 #include <string>
+#include "../../utils/router/router.h"
 
-class RegistroUsuario {
+class FormRegister {
 public:
-    RegistroUsuario() {}
+    FormRegister() {}
 
     void mostrarFormulario() {
         std::string nombreUsuario;

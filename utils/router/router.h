@@ -10,6 +10,7 @@
 #include "../../apps/usuario/controller.h"
 #include "../../apps/producto/controller.h"
 #include "../../apps/categoria/controller.h"
+#include "../tools/list/listsimple.h"
 
 using json = nlohmann::json;
 
@@ -43,7 +44,8 @@ public:
         return true;
     };
 
-    // Métodos para acceder y manipular los datos en la base de datos JSON
+    // Métodos para acceder y manipular los datos en la base de datos JSON //
+
     bool addProduct(const std::string &name, double price, int stock, Category category)
     {
         // Genera un ID único para el nuevo producto
@@ -115,6 +117,28 @@ public:
         return User(0, "", "", "", 0.0, "", false);
     }
 
+    ListaEnlazada<User> getUsersDB()
+    {
+        ListaEnlazada<User> listaUsuarios;
+        
+        std::cout << "Algo paso 2.1" << std::endl;
+        for (const auto &userJson : database["db"]["tables"]["users"])
+        {
+            std::cout << "Algo paso 2.2" << std::endl;
+            User user(
+                userJson["id"],
+                userJson["email"],
+                userJson["password"],
+                userJson["name"],
+                userJson["money"],
+                userJson["role"],
+                userJson["state"]);
+
+            listaUsuarios.agregar(user);
+        }
+        std::cout << "Algo paso 2.3" << std::endl;
+        return listaUsuarios;
+    }
 
 private:
     std::string filename;

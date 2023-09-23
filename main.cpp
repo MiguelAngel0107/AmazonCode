@@ -1,15 +1,17 @@
 #include <iostream>
 #include "utils/router/router.h"
 #include "apps/categoria/controller.h"
+#include "apps/menu/menu.h"
+#include "apps/autheticated/controller.h"
+#include "apps/autheticated/formularioRegistrar.h"
+#include "apps/autheticated/formularioLogin.h"
 
 int main()
 {
     // Nombre del archivo JSON
     std::string databaseFilename = "D:\\2023 Proyectos Mas avanzados\\UpcProyects\\AmazonCode\\db.json";
-
     // Crear una instancia de JsonDatabase
     JsonDatabase database(databaseFilename);
-
     // Cargar la base de datos desde el archivo JSON
     if (!database.load())
     {
@@ -17,37 +19,82 @@ int main()
         return 1; // Salir con código de error
     }
 
-    Category categoria(1, "primera");
+    std::cout<<"Algo paso 1";
 
-    database.addProduct("Carne Nueva Vaca 225235", 2.99, 50, categoria);
+    int opcion;
+    Menu menuBar;
+    Authentication authSession;
+    FormLogin loginInstance(database);
+    FormRegister registerInstance;
 
-    // Crear un nuevo usuario
-    std::string email = "miguel@example.com";
-    std::string password = "contrasena123";
-    std::string name = "Nombre del Usuario";
-    double money = 1000.0;
-    std::string role = "usuario";
-    bool state = true;
-
-    bool createUserResult = database.createUser(email, password, name, money, role, state);
-
-    if (createUserResult)
+    while (true)
     {
-        std::cout << "Usuario creado con éxito." << std::endl;
-    }
-    else
-    {
-        std::cerr << "No se pudo crear el usuario. El usuario ya existe." << std::endl;
-    }
+        if (authSession.getState())
+        {
+            menuBar.mostrarMenuAuthenticated();
+        }
+        else
+        {
+            menuBar.mostrarMenu();
+        }
 
-    User userInit = database.getUser("miguel@example.com");
+        opcion = menuBar.ingresarOpcion();
 
-    std::cout << "Registros User" << userInit.getName() << std::endl;
+        switch (opcion)
+        {
+        case 1:
+            if (authSession.getState())
+            {
+                loginInstance.loginUser();
+                break;
+            }
+            else
+            {
+                loginInstance.loginUser();
+                break;
+            }
+            break;
+        case 2:
+            if (authSession.getState())
+            {
+                registerInstance.mostrarFormulario();
+                break;
+            }
+            else
+            {
+                registerInstance.mostrarFormulario();
+                break;
+            }
+            break;
+        case 3:
+            // Lógica para buscar productos
+            std::cout << "Opción 3 seleccionada: Buscar Producto" << std::endl;
+            break;
+        case 4:
+            // Lógica para ver categoría de productos
+            std::cout << "Opción 4 seleccionada: Ver Categoría de Productos" << std::endl;
+            break;
+        case 5:
+            if (authSession.getState())
+            {
+                authSession.logout();
+                break;
+            }
+            else
+            {
+                std::cout << "Opción inválida. Intente nuevamente." << std::endl;
+                break;
+            }
+        default:
+            std::cout << "Opción inválida. Intente nuevamente." << std::endl;
+            break;
+        }
 
-    if (!database.save())
-    {
-        std::cerr << "No se pudo guardar la base de datos." << std::endl;
-        return 1; // Salir con código de error
+        // Pausa para que el usuario vea el resultado antes de mostrar el menú nuevamente
+        std::cout << "Presione Enter para continuar..." << std::endl
+                  << std::endl;
+        std::cin.ignore(); // Limpia el búfer del teclado
+        std::cin.get();    // Espera a que el usuario presione Enter
     }
 
     return 0;
