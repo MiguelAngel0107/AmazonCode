@@ -104,6 +104,11 @@ public:
         return a.getStock() > b.getStock(); // Ordenar de mayor a menor precio
     }
 
+    bool esMayorAlfabeticamente(const Product &a, const Product &b)
+    {
+        return a.getName() > b.getName();
+    }
+
     // Ordenamiento Seleccion
     void ordenarPorPrecio(std::vector<Product> &productos)
     {
@@ -145,7 +150,7 @@ public:
     }
 
     // Ordenamiento Burbuja
-    void bubbleSort(std::vector<Product> &arr)
+    void ordenarAlfabeticamente(std::vector<Product> &arr)
     {
         int n = arr.size();
         bool swapped;
@@ -154,7 +159,7 @@ public:
             swapped = false;
             for (int j = 0; j < n - i - 1; j++)
             {
-                if (compararPorStock(arr[j], arr[j + 1]))
+                if (esMayorAlfabeticamente(arr[j], arr[j + 1]))
                 {
                     std::swap(arr[j], arr[j + 1]);
                     swapped = true;

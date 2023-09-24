@@ -75,7 +75,7 @@ public:
         std::cout << "Formas de Orden disponibles:" << std::endl;
         std::cout << "=================================================================================================" << std::endl;
 
-        std::vector<std::string> ord = {"MejorPrecio", "MasPopular", "MasVendido"};
+        std::vector<std::string> ord = {"MejorPrecio", "MasPopular", "Alfabeticamente"};
 
         for (int i = 0; i < 3; i++)
         {
@@ -116,9 +116,14 @@ public:
         case 1:
             algorithms.ordenarPorStock(productoByCategory);
             funcionAuxiliar(productoByCategory);
+            std::cin >> op;
+            cart.agregarProducto(op, db);
             break;
         case 2:
+            algorithms.ordenarAlfabeticamente(productoByCategory);
             funcionAuxiliar(productoByCategory);
+            std::cin >> op;
+            cart.agregarProducto(op, db);
             break;
         default:
             break;
