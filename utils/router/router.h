@@ -78,8 +78,7 @@ public:
 
     bool createUser(const std::string &email, const std::string &password, const std::string &name, double money, const std::string &role, bool state)
     {
-        // Verificar si el usuario ya existe (puedes implementar esta verificación)
-        // Si el usuario no existe, crear una instancia de User y agregarlo a la base de datos JSON
+        std::cout<<"Entre a la funcion Create 1"<<std::endl;
         if (!userExists(email))
         {
             // Genera un ID único para el nuevo producto
@@ -87,14 +86,15 @@ public:
 
             User newUser(userId, email, password, name, money, role, state);
 
-            database["db"]["tables"]["users"].push_back({{"id", userId},
+            database["db"]["tables"]["users"].push_back({
                                                          {"email", email},
                                                          {"password", password},
                                                          {"name", name},
                                                          {"money", money},
                                                          {"role", role},
                                                          {"state", state}});
-
+            std::cout<<"Entre a la funcion Create 2"<<std::endl;
+            
             return true;
         }
         return false; // El usuario ya existe
