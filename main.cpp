@@ -74,7 +74,6 @@ int main()
             if (authSession.getState())
             {
                 // Aca va el Carrito
-                // registerInstance.mostrarFormulario(database);
                 break;
             }
             else

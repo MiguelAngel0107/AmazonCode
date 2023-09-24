@@ -1,16 +1,17 @@
 #include <iostream>
 #include "../generic/nodo.h"
 
+template <class C>
 class Pila {
 private:
-    Nodo* tope; // Puntero al nodo en la parte superior de la pila
+    NodoComplejo<C>* tope; // Puntero al nodo en la parte superior de la pila
 
 public:
     Pila() : tope(nullptr) {}
 
     // Empujar un elemento en la parte superior de la pila
     void push(int val) {
-        Nodo* nuevoNodo = new Nodo(val);
+        NodoComplejo<C>* nuevoNodo = new NodoComplejo<C>(val);
         nuevoNodo->siguiente = tope;
         tope = nuevoNodo;
     }
@@ -22,7 +23,7 @@ public:
             return -1; // Valor de error
         }
 
-        Nodo* temp = tope;
+        NodoComplejo<C>* temp = tope;
         int valor = temp->valor;
         tope = temp->siguiente;
         delete temp;

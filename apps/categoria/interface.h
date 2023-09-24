@@ -105,10 +105,11 @@ public:
         switch (optionOrd)
         {
         case 0:
-            algorithms.selectionSort(productoByCategory);
+            algorithms.ordenarPorPrecio(productoByCategory);
             funcionAuxiliar(productoByCategory);
             break;
         case 1:
+            algorithms.ordenarPorStock(productoByCategory);
             funcionAuxiliar(productoByCategory);
             break;
         case 2:

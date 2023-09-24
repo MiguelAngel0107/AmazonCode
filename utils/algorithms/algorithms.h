@@ -104,6 +104,7 @@ public:
         return a.getStock() > b.getStock(); // Ordenar de mayor a menor precio
     }
 
+    // Ordenamiento Seleccion
     void ordenarPorPrecio(std::vector<Product> &productos)
     {
         int n = productos.size();
@@ -121,6 +122,63 @@ public:
             {
                 std::swap(productos[i], productos[max_idx]);
             }
+        }
+    }
+
+    // Ordenamiento Shell
+    void ordenarPorStock(std::vector<Product> &productos)
+    {
+        int n = productos.size();
+        for (int gap = n / 2; gap > 0; gap /= 2)
+        {
+            for (int i = gap; i < n; i++)
+            {
+                Product temp = productos[i];
+                int j;
+                for (j = i; j >= gap && compararPorStock(productos[j - gap], temp); j -= gap)
+                {
+                    productos[j] = productos[j - gap];
+                }
+                productos[j] = temp;
+            }
+        }
+    }
+
+    // Ordenamiento Burbuja
+    void bubbleSort(std::vector<Product> &arr)
+    {
+        int n = arr.size();
+        bool swapped;
+        for (int i = 0; i < n - 1; i++)
+        {
+            swapped = false;
+            for (int j = 0; j < n - i - 1; j++)
+            {
+                if (compararPorStock(arr[j], arr[j + 1]))
+                {
+                    std::swap(arr[j], arr[j + 1]);
+                    swapped = true;
+                }
+            }
+            if (!swapped)
+                break;
+        }
+    }
+
+    // Ordenamiento Insercion
+    void insertionSort(std::vector<Product> &arr)
+    {
+        int n = arr.size();
+        for (int i = 1; i < n; i++)
+        {
+            Product key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && compararPorStock(arr[j], key))
+            {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
         }
     }
 };

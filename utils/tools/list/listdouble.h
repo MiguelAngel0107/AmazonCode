@@ -110,12 +110,6 @@ public:
             // Tecla derecha: avanzar al siguiente nodo
             if (nodoActual->siguiente)
             {
-                // Llamar al callback con el nodo actual
-                if (callback(nodoActual->valor))
-                {
-                    return true;
-                };
-
                 nodoActual = nodoActual->siguiente;
 
                 // Llamar al callback con el nodo actual

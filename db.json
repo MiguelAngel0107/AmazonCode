@@ -1,78 +1,102 @@
 {
-  "config": "",
-  "db": {
-    "tables": {
-      "products": [
-        {
-          "id": 1,
-          "name": "Leche",
-          "price": 2.99,
-          "stock": 50,
-          "categoria": "Comida"
-        },
-        {
-          "id": 2,
-          "name": "Arroz",
-          "price": 2.99,
-          "stock": 50,
-          "categoria": "Comida"
-        },
-        {
-          "id": 3,
-          "name": "Quinoa",
-          "price": 2.99,
-          "stock": 50,
-          "categoria": "Comida"
-        },
-        {
-          "id": 4,
-          "name": "Azucar",
-          "price": 2.99,
-          "stock": 50,
-          "categoria": "Comida"
-        },
-        {
-          "id": 5,
-          "name": "Agua",
-          "price": 2.99,
-          "stock": 50,
-          "categoria": "Comida"
-        },
-        {
-          "id": 6,
-          "name": "Agua Mineral",
-          "price": 2.99,
-          "stock": 50,
-          "categoria": "Comida"
+    "config": "",
+    "db": {
+        "tables": {
+            "categories": [
+                {
+                    "id": 1,
+                    "name": "Deporte"
+                },
+                {
+                    "id": 2,
+                    "name": "Ropa"
+                },
+                {
+                    "id": 3,
+                    "name": "Hogar"
+                },
+                {
+                    "id": 4,
+                    "name": "Salud"
+                },
+                {
+                    "id": 5,
+                    "name": "Comida"
+                }
+            ],
+            "products": [
+                {
+                    "categoria": "Comida",
+                    "id": 1,
+                    "name": "Leche",
+                    "price": 2.99,
+                    "stock": 20
+                },
+                {
+                    "categoria": "Comida",
+                    "id": 2,
+                    "name": "Arroz",
+                    "price": 5.99,
+                    "stock": 10
+                },
+                {
+                    "categoria": "Comida",
+                    "id": 3,
+                    "name": "Quinoa",
+                    "price": 8.99,
+                    "stock": 50
+                },
+                {
+                    "categoria": "Comida",
+                    "id": 4,
+                    "name": "Azucar",
+                    "price": 42.99,
+                    "stock": 420
+                },
+                {
+                    "categoria": "Comida",
+                    "id": 5,
+                    "name": "Agua",
+                    "price": 24.99,
+                    "stock": 150
+                },
+                {
+                    "categoria": "Comida",
+                    "id": 6,
+                    "name": "Agua Mineral",
+                    "price": 12.99,
+                    "stock": 350
+                }
+            ],
+            "users": [
+                {
+                    "email": "angel@gmail.com",
+                    "id": 200489,
+                    "money": 0.0,
+                    "name": "Miguel",
+                    "password": "1234",
+                    "role": "user",
+                    "state": false
+                },
+                {
+                    "email": "gabriel@gamil.com",
+                    "id": 613866,
+                    "money": 0.0,
+                    "name": "gabriel",
+                    "password": "1234",
+                    "role": "user",
+                    "state": false
+                },
+                {
+                    "email": "frank@gmail.com",
+                    "id": 631647,
+                    "money": 0.0,
+                    "name": "Frank",
+                    "password": "1234",
+                    "role": "user",
+                    "state": false
+                }
+            ]
         }
-      ],
-      "users": [
-        {
-          "email": "angel@gmail.com",
-          "id": 200489,
-          "money": 0.0,
-          "name": "Miguel",
-          "password": "1234",
-          "role": "user",
-          "state": false
-        },
-        {
-          "email": "gabriel@gamil.com",
-          "id": 613866,
-          "money": 0.0,
-          "name": "gabriel",
-          "password": "1234",
-          "role": "user",
-          "state": false
-        }
-      ],
-      "categories": [
-        { "id": 1, "name": "Deporte" },
-        { "id": 2, "name": "Ropa" },
-        { "id": 3, "name": "Hogar" },
-        { "id": 4, "name": "Salud" },
-        { "id": 5, "name": "Comida" }
-      ]
     }
-  }
 }

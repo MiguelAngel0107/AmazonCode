@@ -1,17 +1,18 @@
 #include <iostream>
 #include "../generic/nodo.h"
 
+template <class C>
 class Cola {
 private:
-    Nodo* frente; // Puntero al nodo en el frente de la cola
-    Nodo* final;  // Puntero al nodo en el final de la cola
+    NodoComplejo<C>* frente; // Puntero al nodo en el frente de la cola
+    NodoComplejo<C>* final;  // Puntero al nodo en el final de la cola
 
 public:
     Cola() : frente(nullptr), final(nullptr) {}
 
     // Agregar un elemento al final de la cola
     void enqueue(int val) {
-        Nodo* nuevoNodo = new Nodo(val);
+        NodoComplejo<C>* nuevoNodo = new NodoComplejo<C>(val);
         if (!frente) {
             frente = final = nuevoNodo;
         } else {
@@ -27,7 +28,7 @@ public:
             return -1; // Valor de error
         }
 
-        Nodo* temp = frente;
+        NodoComplejo<C>* temp = frente;
         int valor = temp->valor;
         frente = frente->siguiente;
         delete temp;
