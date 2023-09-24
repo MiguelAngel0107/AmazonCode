@@ -1,102 +1,246 @@
 {
-    "config": "",
-    "db": {
-        "tables": {
-            "categories": [
-                {
-                    "id": 1,
-                    "name": "Deporte"
-                },
-                {
-                    "id": 2,
-                    "name": "Ropa"
-                },
-                {
-                    "id": 3,
-                    "name": "Hogar"
-                },
-                {
-                    "id": 4,
-                    "name": "Salud"
-                },
-                {
-                    "id": 5,
-                    "name": "Comida"
-                }
-            ],
-            "products": [
-                {
-                    "categoria": "Comida",
-                    "id": 1,
-                    "name": "Leche",
-                    "price": 2.99,
-                    "stock": 20
-                },
-                {
-                    "categoria": "Comida",
-                    "id": 2,
-                    "name": "Arroz",
-                    "price": 5.99,
-                    "stock": 10
-                },
-                {
-                    "categoria": "Comida",
-                    "id": 3,
-                    "name": "Quinoa",
-                    "price": 8.99,
-                    "stock": 50
-                },
-                {
-                    "categoria": "Comida",
-                    "id": 4,
-                    "name": "Azucar",
-                    "price": 42.99,
-                    "stock": 420
-                },
-                {
-                    "categoria": "Comida",
-                    "id": 5,
-                    "name": "Agua",
-                    "price": 24.99,
-                    "stock": 150
-                },
-                {
-                    "categoria": "Comida",
-                    "id": 6,
-                    "name": "Agua Mineral",
-                    "price": 12.99,
-                    "stock": 350
-                }
-            ],
-            "users": [
-                {
-                    "email": "angel@gmail.com",
-                    "id": 200489,
-                    "money": 0.0,
-                    "name": "Miguel",
-                    "password": "1234",
-                    "role": "user",
-                    "state": false
-                },
-                {
-                    "email": "gabriel@gamil.com",
-                    "id": 613866,
-                    "money": 0.0,
-                    "name": "gabriel",
-                    "password": "1234",
-                    "role": "user",
-                    "state": false
-                },
-                {
-                    "email": "frank@gmail.com",
-                    "id": 631647,
-                    "money": 0.0,
-                    "name": "Frank",
-                    "password": "1234",
-                    "role": "user",
-                    "state": false
-                }
-            ]
+  "config": "",
+  "db": {
+    "tables": {
+      "products": [
+        {
+          "id": 1,
+          "name": "Leche",
+          "price": 2.99,
+          "stock": 50,
+          "categoria": "Comida"
+        },
+        {
+          "id": 2,
+          "name": "Arroz",
+          "price": 2.99,
+          "stock": 50,
+          "categoria": "Comida"
+        },
+        {
+          "id": 3,
+          "name": "Quinoa",
+          "price": 2.99,
+          "stock": 50,
+          "categoria": "Comida"
+        },
+        {
+          "id": 4,
+          "name": "Azucar",
+          "price": 2.99,
+          "stock": 50,
+          "categoria": "Comida"
+        },
+        {
+          "id": 5,
+          "name": "Agua",
+          "price": 2.99,
+          "stock": 50,
+          "categoria": "Comida"
+        },
+        {
+          "id": 6,
+          "name": "Agua Mineral",
+          "price": 2.99,
+          "stock": 50,
+          "categoria": "Comida"
+        },
+        {
+          "id": 7,
+          "name": "Rueda_Abdominal",
+          "price": 59.99,
+          "stock": 60,
+          "categoria": "Deporte"
+        },
+        {
+          "id": 8,
+          "name": "Soga_de_Velocidad",
+          "price": 99.99,
+          "stock": 50,
+          "categoria": "Deporte"
+        },
+        {
+          "id": 9,
+          "name": "Tomatodo",
+          "price": 18.89,
+          "stock": 50,
+          "categoria": "Deporte"
+        },
+        {
+          "id": 10,
+          "name": "Salta_Soga",
+          "price": 8.99,
+          "stock": 70,
+          "categoria": "Deporte"
+        },
+        {
+          "id": 11,
+          "name": "Bandas_Elasticas",
+          "price": 10.9,
+          "stock": 30,
+          "categoria": "Deporte"
+        },
+        {
+          "id": 12,
+          "name": "Mancuernas_5kg",
+          "price": 49.0,
+          "stock": 40,
+          "categoria": "Deporte"
+        },
+        {
+          "id": 13,
+          "name": "Polo_Manga_Corta",
+          "price": 59.9,
+          "stock": 50,
+          "categoria": "Ropa"
+        },
+        {
+          "id": 14,
+          "name": "Casaca_Casual_Hombre",
+          "price": 77.99,
+          "stock": 35,
+          "categoria": "Ropa"
+        },
+        {
+          "id": 15,
+          "name": "Jean_Slim_Hombre",
+          "price": 71.99,
+          "stock": 45,
+          "categoria": "Ropa"
+        },
+        {
+          "id": 16,
+          "name": "Blusa_Casual_Mujer",
+          "price": 99.9,
+          "stock": 55,
+          "categoria": "Ropa"
+        },
+        {
+          "id": 17,
+          "name": "Falda_Larga_Mujer",
+          "price": 79.9,
+          "stock": 35,
+          "categoria": "Ropa"
+        },
+        {
+          "id": 18,
+          "name": "Casaca_Acolchada_Mujer",
+          "price": 114.95,
+          "stock": 30,
+          "categoria": "Ropa"
+        },
+        {
+          "id": 19,
+          "name": "Estante_Plastico",
+          "price": 149.9,
+          "stock": 55,
+          "categoria": "Hogar"
+        },
+        {
+          "id": 20,
+          "name": "Armario",
+          "price": 279.9,
+          "stock": 30,
+          "categoria": "Hogar"
+        },
+        {
+          "id": 21,
+          "name": "Futon_Negro",
+          "price": 290.99,
+          "stock": 35,
+          "categoria": "Hogar"
+        },
+        {
+          "id": 22,
+          "name": "Espejo_Decorativo",
+          "price": 29.9,
+          "stock": 40,
+          "categoria": "Hogar"
+        },
+        {
+          "id": 23,
+          "name": "Escritorio",
+          "price": 199.9,
+          "stock": 45,
+          "categoria": "Hogar"
+        },
+        {
+          "id": 24,
+          "name": "Mesa_de_TV",
+          "price": 399.9,
+          "stock": 50,
+          "categoria": "Hogar"
+        },
+        {
+          "id": 25,
+          "name": "Oximetro",
+          "price": 59.9,
+          "stock": 70,
+          "categoria": "Salud"
+        },
+        {
+          "id": 26,
+          "name": "Alcohol_en_Gel",
+          "price": 9.9,
+          "stock": 90,
+          "categoria": "Salud"
+        },
+        {
+          "id": 27,
+          "name": "Muletas_Aluminio",
+          "price": 127.99,
+          "stock": 50,
+          "categoria": "Salud"
+        },
+        {
+          "id": 28,
+          "name": "Andador_Adulto_de_Ortopedia",
+          "price": 399.99,
+          "stock": 40,
+          "categoria": "Salud"
+        },
+        {
+          "id": 29,
+          "name": "Glucometro",
+          "price": 144.8,
+          "stock": 60,
+          "categoria": "Salud"
+        },
+        {
+          "id": 30,
+          "name": "Mascarillas_KN95",
+          "price": 9.99,
+          "stock": 120,
+          "categoria": "Salud"
         }
+      ],
+      "users": [
+        {
+          "email": "angel@gmail.com",
+          "id": 200489,
+          "money": 0.0,
+          "name": "Miguel",
+          "password": "1234",
+          "role": "user",
+          "state": false
+        },
+        {
+          "email": "gabriel@gamil.com",
+          "id": 613866,
+          "money": 0.0,
+          "name": "gabriel",
+          "password": "1234",
+          "role": "user",
+          "state": false
+        }
+      ],
+      "categories": [
+        { "id": 1, "name": "Deporte" },
+        { "id": 2, "name": "Ropa" },
+        { "id": 3, "name": "Hogar" },
+        { "id": 4, "name": "Salud" },
+        { "id": 5, "name": "Comida" }
+      ]
     }
+  }
 }
