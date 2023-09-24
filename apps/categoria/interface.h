@@ -105,6 +105,7 @@ public:
         switch (optionOrd)
         {
         case 0:
+            algorithms.selectionSort(productoByCategory);
             funcionAuxiliar(productoByCategory);
             break;
         case 1:
