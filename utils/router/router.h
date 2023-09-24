@@ -137,7 +137,7 @@ public:
         {
             if (categoryJson["name"] == name)
             {
-                //std::cout << "User: " << categoryJson["name"];
+                // std::cout << "User: " << categoryJson["name"];
                 Category categoryAux(categoryJson["id"], categoryJson["name"]);
                 return categoryAux;
             }
@@ -219,6 +219,30 @@ public:
         }
 
         return productList;
+    }
+
+    std::vector<Product> getProductsByCategory(std::string catgerySelect)
+    {
+        std::vector<Product> productsBy;
+
+        for (const auto &productJson : database["db"]["tables"]["products"])
+        {
+            if (catgerySelect == productJson["categoria"])
+            {
+                std::cout << "Algo paso 2.2" << std::endl;
+                Category AuxCategory = getCategory(productJson["categoria"]);
+                Product producto(
+                    productJson["id"],
+                    productJson["name"],
+                    productJson["price"],
+                    productJson["stock"],
+                    AuxCategory);
+
+                productsBy.push_back(producto);
+            }
+        }
+
+        return productsBy;
     }
 
 private:

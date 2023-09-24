@@ -24,6 +24,7 @@ int main()
 
     std::srand(std::time(0));
     int opcion;
+    char opcionChar;
     std::string txt;
     Menu menuBar;
     Authentication authSession;
@@ -84,22 +85,22 @@ int main()
             break;
         case 3:
             std::cout << "Tiene en mente el nombre de algun producto --> Y:si | N:no" << std::endl;
-            std::cin >> opcion;
-            switch (opcion)
+            std::cin >> opcionChar;
+            switch (opcionChar)
             {
-            case 121:
-            case 89:
-                /* Código para los casos 121 o 89 */
-                std::cout << "Porfavor ingrese el nombre del producto que desea:" << std::endl;
+            case 'Y':
+            case 'y':
+                /* Código para cuando selecciona 'Y' o 'y' */
+                std::cout << "Por favor ingrese el nombre del producto que desea:" << std::endl;
                 std::cin >> txt;
                 break;
-            case 110:
-            case 78:
-                /* Código para los casos 110 o 23 */
+            case 'N':
+            case 'n':
+                /* Código para cuando selecciona 'N' o 'n' */
                 listaProductos.printProductInfo(database);
                 break;
             default:
-                /* Código para otros casos */
+                /* Código para otras opciones */
                 break;
             }
             break;

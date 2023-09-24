@@ -13,6 +13,10 @@ public:
     {
         return name;
     };
+    int getId() const
+    {
+        return id;
+    };
 
 private:
     int id;

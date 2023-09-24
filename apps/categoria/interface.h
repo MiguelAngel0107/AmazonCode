@@ -7,12 +7,19 @@
 
 #include "./controller.h"
 #include "../../utils/router/router.h"
+#include "../producto/controller.h"
+#include "../../utils/algorithms/algorithms.h"
 
 // Paso 2: Crear una clase concreta ConsoleCategoryDisplay
 class CategoryDisplay
 {
 private:
     std::vector<Category> categories;
+    std::vector<Product> productoByCategory;
+    int option;
+    std::string catSelect;
+    int optionOrd;
+    SortingAlgorithms algorithms;
 
 public:
     CategoryDisplay()
@@ -23,17 +30,92 @@ public:
     {
         categories = db.getCategories();
 
-        std::cout << "======================================" << std::endl;
+        std::cout << "=================================================================================================" << std::endl;
         std::cout << "Categorías disponibles:" << std::endl;
-        std::cout << "======================================" << std::endl;
+        std::cout << "=================================================================================================" << std::endl;
 
         for (const Category &category : categories)
         {
-            std::cout << " /|\\ " << category.getName() << "  ";
+            std::cout << " | " << category.getId() << ". " << category.getName() << "  ";
         }
 
         std::cout << std::endl
-                  << "======================================" << std::endl;
+                  << "=================================================================================================" << std::endl
+                  << std::endl;
+        std::cout << "Tu opcion es -->    ";
+        std::cin >> option;
+
+        switch (option)
+        {
+        case 1:
+            catSelect = "Deporte";
+            break;
+        case 2:
+            catSelect = "Ropa";
+            break;
+        case 3:
+            catSelect = "Hogar";
+            break;
+        case 4:
+            catSelect = "Salud";
+            break;
+        case 5:
+            catSelect = "Comida";
+            break;
+
+        default:
+            break;
+        }
+
+        productoByCategory = db.getProductsByCategory(catSelect);
+
+        std::cout
+            << "=================================================================================================" << std::endl;
+        std::cout << "Formas de Orden disponibles:" << std::endl;
+        std::cout << "=================================================================================================" << std::endl;
+
+        std::vector<std::string> ord = {"MejorPrecio", "MasPopular", "MasVendido"};
+
+        for (int i = 0; i < 3; i++)
+        {
+            std::cout << " | " << i << ". " << ord[i] << "  ";
+        }
+
+        std::cout << std::endl
+                  << "=================================================================================================" << std::endl
+                  << std::endl;
+        std::cout << "Tu opcion es -->    ";
+        std::cin >> optionOrd;
+
+        auto funcionAuxiliar = [&](const std::vector<Product> &productoAux)
+        {
+            std::cout << "======================================" << std::endl;
+            std::cout << "|   Nombre   |   Precio   |   Stock   |" << std::endl;
+            std::cout << "======================================" << std::endl;
+            for (const Product &producto : productoAux)
+            {
+                std::cout << "| " << std::left << std::setw(11) << producto.getName()
+                          << "| $" << std::left << std::setw(10) << std::fixed << std::setprecision(2) << producto.getPrice()
+                          << "| " << std::left << std::setw(8) << producto.getStock() << "|" << std::endl;
+            }
+
+            return false;
+        };
+
+        switch (optionOrd)
+        {
+        case 0:
+            funcionAuxiliar(productoByCategory);
+            break;
+        case 1:
+            funcionAuxiliar(productoByCategory);
+            break;
+        case 2:
+            funcionAuxiliar(productoByCategory);
+            break;
+        default:
+            break;
+        }
     }
 };
 
