@@ -6,22 +6,34 @@
 #include <string>
 
 #include "./controller.h"
+#include "../../utils/router/router.h"
 
 // Paso 2: Crear una clase concreta ConsoleCategoryDisplay
-class CategoryDisplay {
+class CategoryDisplay
+{
+private:
+    std::vector<Category> categories;
+
 public:
-    void showCategories(const std::vector<Category> &categories)
+    CategoryDisplay()
     {
+    }
+
+    void showCategories(JsonDatabase db)
+    {
+        categories = db.getCategories();
+
         std::cout << "======================================" << std::endl;
         std::cout << "Categorías disponibles:" << std::endl;
         std::cout << "======================================" << std::endl;
 
         for (const Category &category : categories)
         {
-            std::cout << " /|\\ " << category.getName() << std::endl;
+            std::cout << " /|\\ " << category.getName() << "  ";
         }
 
-        std::cout << "======================================" << std::endl;
+        std::cout << std::endl
+                  << "======================================" << std::endl;
     }
 };
 

@@ -1,4 +1,8 @@
 #include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+
 #include "utils/router/router.h"
 #include "apps/categoria/controller.h"
 #include "apps/menu/menu.h"
@@ -7,6 +11,7 @@
 #include "apps/autheticated/formularioLogin.h"
 #include "apps/usuario/perfilUsuario.h"
 #include "apps/categoria/interface.h"
+#include "apps/producto/interface.h"
 
 int main()
 {
@@ -17,15 +22,18 @@ int main()
 
     std::cout << "Algo paso 1";
 
+    std::srand(std::time(0));
     int opcion;
+    std::string txt;
     Menu menuBar;
     Authentication authSession;
     FormLogin loginInstance;
     FormRegister registerInstance;
 
     CategoryDisplay categorias;
+    ProductList listaProductos;
 
-    PerfilUsuario perfil(1,"","","",0.0,"",false);
+    PerfilUsuario perfil(1, "", "", "", 0.0, "", false);
 
     while (true)
     {
@@ -65,7 +73,7 @@ int main()
             if (authSession.getState())
             {
                 // Aca va el Carrito
-                //registerInstance.mostrarFormulario(database);
+                // registerInstance.mostrarFormulario(database);
                 break;
             }
             else
@@ -75,14 +83,28 @@ int main()
             }
             break;
         case 3:
-            // Lógica para buscar productos
-            std::cout << "Opción 3 seleccionada: Buscar Producto" << std::endl;
-            categorias.showCategories();
-
+            std::cout << "Tiene en mente el nombre de algun producto --> Y:si | N:no" << std::endl;
+            std::cin >> opcion;
+            switch (opcion)
+            {
+            case 121:
+            case 89:
+                /* Código para los casos 121 o 89 */
+                std::cout << "Porfavor ingrese el nombre del producto que desea:" << std::endl;
+                std::cin >> txt;
+                break;
+            case 110:
+            case 78:
+                /* Código para los casos 110 o 23 */
+                listaProductos.printProductInfo(database);
+                break;
+            default:
+                /* Código para otros casos */
+                break;
+            }
             break;
         case 4:
-            // Lógica para ver categoría de productos
-            std::cout << "Opción 4 seleccionada: Ver Categoría de Productos" << std::endl;
+            categorias.showCategories(database);
             break;
         case 5:
             if (authSession.getState())

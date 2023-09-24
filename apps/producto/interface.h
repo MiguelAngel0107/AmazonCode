@@ -1,96 +1,61 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-#include "product.h"
 #include <iostream>
+#include <conio.h>
+#include "./controller.h"
+#include "../../utils/tools/list/listdouble.h"
+#include "../../utils/router/router.h"
 
 class ProductList
 {
 public:
-    // Constructor
-    ProductList()
+    ProductList() {}
+
+    void printProductInfo(JsonDatabase db)
     {
-        // Inicializar la cabeza y la cola de la lista como nulos
-        head = nullptr;
-        tail = nullptr;
+        char key;
 
-        // Agregar 10 productos de ejemplo a la lista
-        for (int i = 1; i <= 10; ++i)
-        {
-            addProduct(Product(i, "Producto " + std::to_string(i), i * 10.0, i * 5, Category("Categoría " + std::to_string(i))));
-        }
-    }
+        productList = db.getProductsDB();
 
-    // Destructor para liberar la memoria de la lista
-    ~ProductList()
-    {
-        // Eliminar todos los nodos de la lista
-        while (head != nullptr)
+        // Verificar si productList está vacía antes de imprimir
+        if (productList.isEmpty())
         {
-            Node *temp = head;
-            head = head->next;
-            delete temp;
-        }
-    }
-
-    // Función para agregar un producto a la lista
-    void addProduct(const Product &product)
-    {
-        Node *newNode = new Node(product);
-        if (head == nullptr)
-        {
-            // Si la lista está vacía, establecer el nuevo nodo como la cabeza y la cola
-            head = newNode;
-            tail = newNode;
-        }
-        else
-        {
-            // Agregar el nuevo nodo al final de la lista
-            tail->next = newNode;
-            newNode->prev = tail;
-            tail = newNode;
-        }
-    }
-
-    // Función para imprimir la información de un producto en función de su índice
-    void printProductInfo(int index)
-    {
-        Node *current = head;
-        int currentIndex = 1;
-
-        while (current != nullptr && currentIndex < index)
-        {
-            current = current->next;
-            currentIndex++;
+            std::cout << "La lista de productos está vacía." << std::endl;
+            return;
         }
 
-        if (current != nullptr)
+        auto funcionAuxiliar = [&](const std::vector<Product> &productoAux)
         {
-            // Imprimir la información del producto
-            const Product &product = current->data;
-            std::cout << "Producto: " << product.getName() << std::endl;
-            std::cout << "Precio: " << product.getPrice() << std::endl;
-            std::cout << "Stock Disponible: " << product.getStock() << std::endl;
-        }
-        else
+            std::cout << "======================================" << std::endl;
+            std::cout << "|   Nombre   |   Precio   |   Stock   |" << std::endl;
+            std::cout << "======================================" << std::endl;
+            for (const Product &producto : productoAux)
+            {
+                std::cout << "| " << std::left << std::setw(11) << producto.getName()
+                          << "| $" << std::left << std::setw(10) << std::fixed << std::setprecision(2) << producto.getPrice()
+                          << "| " << std::left << std::setw(8) << producto.getStock() << "|" << std::endl;
+            }
+
+            return false;
+        };
+
+        while (true)
         {
-            std::cout << "Índice no válido. Debe estar entre 1 y 10." << std::endl;
+            std::cout << "Presione A ó D ó Q  para continuar..." << std::endl;
+            key = _getch();
+            if (key == 'q')
+            {
+                // Salir si se presiona la tecla 'q'
+                break;
+            }
+            if (productList.pointControl(funcionAuxiliar, key))
+                break;
         }
     }
 
 private:
-    // Nodo para la lista doblemente enlazada
-    struct Node
-    {
-        Product data;
-        Node *prev;
-        Node *next;
-
-        Node(const Product &product) : data(product), prev(nullptr), next(nullptr) {}
-    };
-
-    Node *head; // Puntero a la cabeza de la lista
-    Node *tail; // Puntero a la cola de la lista
+    ListaEnlazadaDoble<std::vector<Product>> productList;
 };
 
 #endif // PRODUCT_LIST_H

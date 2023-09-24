@@ -4,6 +4,7 @@
 #include <string>
 #include <nlohmann/json.hpp>
 #include <fstream>
+#include <vector>
 #include <iostream>
 
 #include "../gen/generateId.h"
@@ -11,6 +12,7 @@
 #include "../../apps/producto/controller.h"
 #include "../../apps/categoria/controller.h"
 #include "../tools/list/listsimple.h"
+#include "../tools/list/listdouble.h"
 
 using json = nlohmann::json;
 
@@ -128,6 +130,23 @@ public:
         return User(0, "", "", "", 0.0, "", false);
     }
 
+    Category getCategory(const std::string &name)
+    {
+        // Busca el usuario por su correo electrónico
+        for (const auto &categoryJson : database["db"]["tables"]["categories"])
+        {
+            if (categoryJson["name"] == name)
+            {
+                //std::cout << "User: " << categoryJson["name"];
+                Category categoryAux(categoryJson["id"], categoryJson["name"]);
+                return categoryAux;
+            }
+        }
+
+        // Si no se encuentra el usuario, devuelve un usuario vacío
+        return Category(0, "");
+    }
+
     ListaEnlazada<User> getUsersDB()
     {
         ListaEnlazada<User> listaUsuarios;
@@ -149,6 +168,57 @@ public:
         }
         std::cout << "Algo paso getUsers 2.3" << std::endl;
         return listaUsuarios;
+    }
+
+    std::vector<Category> getCategories()
+    {
+        std::vector<Category> categories;
+
+        for (const auto &categoriaJson : database["db"]["tables"]["categories"])
+        {
+            std::cout << "Algo paso 2.2" << std::endl;
+            Category categiaAux(
+                categoriaJson["id"],
+                categoriaJson["name"]);
+
+            categories.push_back(categiaAux);
+        }
+
+        return categories;
+    }
+
+    ListaEnlazadaDoble<std::vector<Product>> getProductsDB()
+    {
+        ListaEnlazadaDoble<std::vector<Product>> productList;
+        std::vector<Product> vectorTemporal;
+
+        for (const auto &productoJson : database["db"]["tables"]["products"])
+        {
+            // std::cout << "Encontre este producto:" << productoJson["id"] << std::endl;
+            // std::cout << "Encontre este producto:" << productoJson["name"] << std::endl;
+            // std::cout << "Encontre este producto:" << productoJson["price"] << std::endl;
+            // std::cout << "Encontre este producto:" << productoJson["stock"] << std::endl;
+            // std::cout << "Encontre este producto:" << productoJson["categoria"] << std::endl;
+
+            Category AuxCategory = getCategory(productoJson["categoria"]);
+
+            Product producto(
+                productoJson["id"],
+                productoJson["name"],
+                productoJson["price"],
+                productoJson["stock"],
+                AuxCategory);
+
+            vectorTemporal.push_back(producto);
+
+            if (vectorTemporal.size() == 3)
+            {
+                productList.agregarAlFinal(vectorTemporal);
+                vectorTemporal.clear(); // Limpia el vector temporal para el próximo grupo
+            }
+        }
+
+        return productList;
     }
 
 private:

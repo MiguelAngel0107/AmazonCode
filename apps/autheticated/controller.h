@@ -41,7 +41,7 @@ public:
     }
     void alerState()
     {
-        std::cout << "Estado auth:           " << stateSession << "         /////////////////////////" << std::endl;
+        //std::cout << "Estado auth:           " << stateSession << "         /////////////////////////" << std::endl;
     }
 
 private:
