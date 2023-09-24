@@ -6,31 +6,38 @@
 #include <string>
 #include <unordered_map>
 #include "../usuario/controller.h"
+#include "../usuario/perfilUsuario.h"
+#include "../autheticated/controller.h"
 #include "../../utils/router/router.h"
 #include "../../utils/tools/generic/nodo.h"
 
 class FormLogin
 {
 private:
-    std::unordered_map<std::string, std::string> userDatabase;
     ListaEnlazada<User> listaUsuarios;
 
 public:
-    FormLogin(JsonDatabase db)
+    FormLogin() {}
+
+    bool loginUser(Authentication &sessionAuth, JsonDatabase db, PerfilUsuario &perfil)
     {
         listaUsuarios = db.getUsersDB();
-    }
 
-    bool loginUser()
-    {
         std::string correo, contraseña;
         std::cout << "Ingrese su correo: ";
         std::cin >> correo;
 
-
         auto funcionAuxiliar = [&](const User &usuario)
         {
-            // std::cout << "Entre a la Call Funcion" << std::endl;
+            std::cout << "*********************Entre a la Call Funcion**********************" << std::endl;
+            std::cout << usuario.getEmail() << std::endl;
+            std::cout << usuario.getId() << std::endl;
+            std::cout << usuario.getMoney() << std::endl;
+            std::cout << usuario.getName() << std::endl;
+            std::cout << usuario.getPassword() << std::endl;
+            std::cout << usuario.getRole() << std::endl;
+            std::cout << usuario.getState() << std::endl;
+
             if (usuario.getEmail() == correo)
             {
                 std::cout << "Ingrese su contraseña: ";
@@ -52,7 +59,12 @@ public:
         };
 
         if (listaUsuarios.imprimirFunction(funcionAuxiliar))
+        {
+            sessionAuth.login(correo);
+            User auxUser = db.getUser(correo);
+            perfil.configurarUsuario(auxUser.getId(), auxUser.getEmail(), auxUser.getPassword(), auxUser.getName(), auxUser.getMoney(), auxUser.getRole(), true);
             return true;
+        }
 
         // Si no se encuentra el correo en la lista
         std::cout

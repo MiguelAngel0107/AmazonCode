@@ -5,25 +5,19 @@
             "products": [],
             "users": [
                 {
-                    "email": "miguel",
+                    "email": "angel@gmail.com",
+                    "id": 200489,
                     "money": 0.0,
-                    "name": "Miugel",
+                    "name": "Miguel",
                     "password": "1234",
                     "role": "user",
                     "state": false
                 },
                 {
-                    "email": "gabreil",
+                    "email": "gabriel@gamil.com",
+                    "id": 613866,
                     "money": 0.0,
-                    "name": "Gabruiel",
-                    "password": "1234",
-                    "role": "user",
-                    "state": false
-                },
-                {
-                    "email": "angel",
-                    "money": 0.0,
-                    "name": "Angel",
+                    "name": "gabriel",
                     "password": "1234",
                     "role": "user",
                     "state": false

@@ -5,6 +5,8 @@
 #include "apps/autheticated/controller.h"
 #include "apps/autheticated/formularioRegistrar.h"
 #include "apps/autheticated/formularioLogin.h"
+#include "apps/usuario/perfilUsuario.h"
+#include "apps/categoria/interface.h"
 
 int main()
 {
@@ -18,8 +20,12 @@ int main()
     int opcion;
     Menu menuBar;
     Authentication authSession;
-    FormLogin loginInstance(database);
+    FormLogin loginInstance;
     FormRegister registerInstance;
+
+    CategoryDisplay categorias;
+
+    PerfilUsuario perfil(1,"","","",0.0,"",false);
 
     while (true)
     {
@@ -46,19 +52,20 @@ int main()
         case 1:
             if (authSession.getState())
             {
-                loginInstance.loginUser();
+                perfil.imprimirPerfil();
                 break;
             }
             else
             {
-                loginInstance.loginUser();
+                loginInstance.loginUser(authSession, database, perfil);
                 break;
             }
             break;
         case 2:
             if (authSession.getState())
             {
-                registerInstance.mostrarFormulario(database);
+                // Aca va el Carrito
+                //registerInstance.mostrarFormulario(database);
                 break;
             }
             else
@@ -70,6 +77,8 @@ int main()
         case 3:
             // Lógica para buscar productos
             std::cout << "Opción 3 seleccionada: Buscar Producto" << std::endl;
+            categorias.showCategories();
+
             break;
         case 4:
             // Lógica para ver categoría de productos

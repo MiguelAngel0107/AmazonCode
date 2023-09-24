@@ -44,11 +44,6 @@ public:
         {
             // Código que puede generar una excepción
             db.createUser(correoUsuario, contrasena, nombreUsuario, 0.0, "user", false);
-            // Después de agregar el usuario, guarda los cambios en la base de datos JSON.
-            if (!db.save())
-            {
-                std::cerr << "No se pudo guardar la base de datos." << std::endl;
-            }
         }
         catch (const std::exception &e)
         {

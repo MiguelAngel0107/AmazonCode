@@ -10,13 +10,21 @@ class Authentication
 public:
     Authentication()
     {
+        alerState();
         currentUserEmail = ""; // Inicialmente no hay usuario autenticado
     };
-    
+
+    void login(std::string email)
+    {
+        currentUserEmail = email;
+        stateSession = true;
+        alerState();
+    }
     void logout()
     {
         currentUserEmail = "";
-        stateSession = false; 
+        stateSession = false;
+        alerState();
     };
     bool isLoggedIn() const
     {
@@ -28,11 +36,12 @@ public:
     };
     bool getState()
     {
+        alerState();
         return stateSession;
     }
-    void setState()
+    void alerState()
     {
-        stateSession = !stateSession;
+        std::cout << "Estado auth:           " << stateSession << "         /////////////////////////" << std::endl;
     }
 
 private:

@@ -29,6 +29,8 @@ public:
 
         file >> database;
         file.close();
+        std::cout << std::endl
+                  << "-----------------Se Cargo Nuevo Datos------------------------" << std::endl;
         return true;
     };
     bool save()
@@ -41,6 +43,8 @@ public:
 
         file << std::setw(4) << database << std::endl;
         file.close();
+        std::cout << std::endl
+                  << "-----------------Se Guardo Nuevo Datos------------------------" << std::endl;
         return true;
     };
 
@@ -78,7 +82,7 @@ public:
 
     bool createUser(const std::string &email, const std::string &password, const std::string &name, double money, const std::string &role, bool state)
     {
-        std::cout<<"Entre a la funcion Create 1"<<std::endl;
+        std::cout << "Entre a la funcion Create 1" << std::endl;
         if (!userExists(email))
         {
             // Genera un ID único para el nuevo producto
@@ -86,15 +90,22 @@ public:
 
             User newUser(userId, email, password, name, money, role, state);
 
-            database["db"]["tables"]["users"].push_back({
+            database["db"]["tables"]["users"].push_back({{"id", userId},
                                                          {"email", email},
                                                          {"password", password},
                                                          {"name", name},
                                                          {"money", money},
                                                          {"role", role},
                                                          {"state", state}});
-            std::cout<<"Entre a la funcion Create 2"<<std::endl;
-            
+            std::cout << "Entre a la funcion Create 2" << std::endl;
+
+            // Después de agregar el usuario, guarda los cambios en la base de datos JSON.
+            if (!save())
+            {
+                std::cerr << "No se pudo guardar la base de datos." << std::endl;
+                return false;
+            }
+
             return true;
         }
         return false; // El usuario ya existe
@@ -120,8 +131,8 @@ public:
     ListaEnlazada<User> getUsersDB()
     {
         ListaEnlazada<User> listaUsuarios;
-        
-        std::cout << "Algo paso 2.1" << std::endl;
+
+        std::cout << "Algo paso getUsers 2.1" << std::endl;
         for (const auto &userJson : database["db"]["tables"]["users"])
         {
             std::cout << "Algo paso 2.2" << std::endl;
@@ -136,7 +147,7 @@ public:
 
             listaUsuarios.agregar(user);
         }
-        std::cout << "Algo paso 2.3" << std::endl;
+        std::cout << "Algo paso getUsers 2.3" << std::endl;
         return listaUsuarios;
     }
 
