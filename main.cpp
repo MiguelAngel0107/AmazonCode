@@ -12,6 +12,7 @@
 #include "apps/usuario/perfilUsuario.h"
 #include "apps/categoria/interface.h"
 #include "apps/producto/interface.h"
+#include "apps/cart/controller.h"
 
 int main()
 {
@@ -33,6 +34,7 @@ int main()
 
     CategoryDisplay categorias;
     ProductList listaProductos;
+    Cart carrito;
 
     PerfilUsuario perfil(1, "", "", "", 0.0, "", false);
 
@@ -73,7 +75,7 @@ int main()
         case 2:
             if (authSession.getState())
             {
-                // Aca va el Carrito
+                carrito.mostrarCarrito();
                 break;
             }
             else
@@ -104,7 +106,7 @@ int main()
             }
             break;
         case 4:
-            categorias.showCategories(database);
+            categorias.showCategories(database, carrito);
             break;
         case 5:
             if (authSession.getState())

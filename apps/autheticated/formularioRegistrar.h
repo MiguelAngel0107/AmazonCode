@@ -54,6 +54,7 @@ public:
         std::cout << "Registro exitoso. Usuario registrado:\n";
         std::cout << "Nombre de usuario: " << nombreUsuario << "\n";
         std::cout << "Correo de usuario: " << correoUsuario << "\n";
+        std::cout << std::endl;
     }
 };
 

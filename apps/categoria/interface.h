@@ -9,6 +9,7 @@
 #include "../../utils/router/router.h"
 #include "../producto/controller.h"
 #include "../../utils/algorithms/algorithms.h"
+#include "../cart/controller.h"
 
 // Paso 2: Crear una clase concreta ConsoleCategoryDisplay
 class CategoryDisplay
@@ -26,7 +27,7 @@ public:
     {
     }
 
-    void showCategories(JsonDatabase db)
+    void showCategories(JsonDatabase db, Cart &cart)
     {
         categories = db.getCategories();
 
@@ -102,11 +103,15 @@ public:
             return false;
         };
 
+        int op;
+
         switch (optionOrd)
         {
         case 0:
             algorithms.ordenarPorPrecio(productoByCategory);
             funcionAuxiliar(productoByCategory);
+            std::cin >> op;
+            cart.agregarProducto(op, db);
             break;
         case 1:
             algorithms.ordenarPorStock(productoByCategory);

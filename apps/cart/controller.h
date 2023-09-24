@@ -5,32 +5,40 @@
 #include <string>
 #include <iostream>
 #include "../producto/controller.h"
+#include "../../utils/tools/pila/pila.h"
+#include "../../utils/router/router.h"
 
-class Cart {
+class Cart
+{
 private:
-    std::vector<Product> productos;
+    Pila<Product> productosCart;
 
 public:
-    void agregarProducto(const Product &producto) {
-        productos.push_back(producto);
+    void agregarProducto(int id, JsonDatabase db)
+    {
+        productosCart.push(db.getProduct(id));
     }
 
-    void mostrarCarrito() {
-        if (productos.empty()) {
-            std::cout << "El carrito está vacío." << std::endl;
-        } else {
-            std::cout << "Contenido del carrito:" << std::endl;
-            for (const Product &producto : productos) {
-                std::cout << "Nombre: " << producto.getName() << ", Precio: " << producto.getPrice() << std::endl;
-            }
-        }
+    void mostrarCarrito()
+    {
+        std::cout << "==========================================================" << std::endl;
+        std::cout << "Contenido del carrito:" << std::endl;
+        auto funcionAuxiliar = [&](const Product &productoAux)
+        {
+            std::cout << "Nombre: " << productoAux.getName() << ", Precio: " << productoAux.getPrice() << std::endl;
+            return false;
+        };
+
+        productosCart.mostrarPila(funcionAuxiliar);
     }
 
-    double calcularTotal() {
+    double calcularTotal()
+    {
         double total = 0.0;
-        for (const Product &producto : productos) {
-            total += producto.getPrice();
-        }
+        // for (const Product &producto : productosCart)
+        //{
+        //     total += producto.getPrice();
+        // }
         return total;
     }
 };

@@ -2,42 +2,64 @@
 #include "../generic/nodo.h"
 
 template <class C>
-class Pila {
+class Pila
+{
 private:
-    NodoComplejo<C>* tope; // Puntero al nodo en la parte superior de la pila
+    NodoComplejo<C> *tope; // Puntero al nodo en la parte superior de la pila
 
 public:
     Pila() : tope(nullptr) {}
 
     // Empujar un elemento en la parte superior de la pila
-    void push(int val) {
-        NodoComplejo<C>* nuevoNodo = new NodoComplejo<C>(val);
+    void push(C val)
+    {
+        NodoComplejo<C> *nuevoNodo = new NodoComplejo<C>(val);
         nuevoNodo->siguiente = tope;
         tope = nuevoNodo;
     }
 
     // Sacar un elemento de la parte superior de la pila
-    int pop() {
-        if (isEmpty()) {
+    C pop()
+    {
+        if (isEmpty())
+        {
             std::cerr << "La pila está vacía." << std::endl;
-            return -1; // Valor de error
+            // return C(); // Valor de error
         }
 
-        NodoComplejo<C>* temp = tope;
-        int valor = temp->valor;
+        NodoComplejo<C> *temp = tope;
+        C valor = temp->valor;
         tope = temp->siguiente;
         delete temp;
         return valor;
     }
 
     // Verificar si la pila está vacía
-    bool isEmpty() {
+    bool isEmpty()
+    {
         return tope == nullptr;
     }
 
+    void mostrarPila(std::function<bool(const Product &)> callback)
+    {
+        NodoComplejo<C> *actual = tope;
+        std::cout << "Elementos en la pila:"<< actual->valor.getName() << std::endl;
+        while (actual)
+        {
+            if (callback(actual->valor))
+            {
+            };
+            actual = actual->siguiente;
+        }
+
+        std::cout << std::endl;
+    }
+
     // Liberar la memoria de la pila
-    ~Pila() {
-        while (!isEmpty()) {
+    ~Pila()
+    {
+        while (!isEmpty())
+        {
             pop();
         }
     }

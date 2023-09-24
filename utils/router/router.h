@@ -84,7 +84,7 @@ public:
 
     bool createUser(const std::string &email, const std::string &password, const std::string &name, double money, const std::string &role, bool state)
     {
-        std::cout << "Entre a la funcion Create 1" << std::endl;
+        //std::cout << "Entre a la funcion Create 1" << std::endl;
         if (!userExists(email))
         {
             // Genera un ID único para el nuevo producto
@@ -99,7 +99,7 @@ public:
                                                          {"money", money},
                                                          {"role", role},
                                                          {"state", state}});
-            std::cout << "Entre a la funcion Create 2" << std::endl;
+            //std::cout << "Entre a la funcion Create 2" << std::endl;
 
             // Después de agregar el usuario, guarda los cambios en la base de datos JSON.
             if (!save())
@@ -147,14 +147,38 @@ public:
         return Category(0, "");
     }
 
+    Product getProduct(int &id)
+    {
+        // Busca el usuario por su correo electrónico
+        for (const auto &productJson : database["db"]["tables"]["products"])
+        {
+            if (productJson["id"] == id)
+            {
+                // std::cout << "User: " << categoryJson["name"];
+                Category AuxCategory = getCategory(productJson["categoria"]);
+                Product producto(
+                    productJson["id"],
+                    productJson["name"],
+                    productJson["price"],
+                    productJson["stock"],
+                    AuxCategory);
+
+                return producto;
+            }
+        }
+
+        // Si no se encuentra el usuario, devuelve un usuario vacío
+        return Product(0, "", 0.0, 0, Category(0, ""));
+    }
+
     ListaEnlazada<User> getUsersDB()
     {
         ListaEnlazada<User> listaUsuarios;
 
-        std::cout << "Algo paso getUsers 2.1" << std::endl;
+        //std::cout << "Algo paso getUsers 2.1" << std::endl;
         for (const auto &userJson : database["db"]["tables"]["users"])
         {
-            std::cout << "Algo paso 2.2" << std::endl;
+            //std::cout << "Algo paso 2.2" << std::endl;
             User user(
                 userJson["id"],
                 userJson["email"],
@@ -166,7 +190,7 @@ public:
 
             listaUsuarios.agregar(user);
         }
-        std::cout << "Algo paso getUsers 2.3" << std::endl;
+        //std::cout << "Algo paso getUsers 2.3" << std::endl;
         return listaUsuarios;
     }
 
@@ -176,7 +200,7 @@ public:
 
         for (const auto &categoriaJson : database["db"]["tables"]["categories"])
         {
-            std::cout << "Algo paso 2.2" << std::endl;
+            //std::cout << "Algo paso 2.2" << std::endl;
             Category categiaAux(
                 categoriaJson["id"],
                 categoriaJson["name"]);
@@ -229,7 +253,7 @@ public:
         {
             if (catgerySelect == productJson["categoria"])
             {
-                std::cout << "Algo paso 2.2" << std::endl;
+                // std::cout << "Algo paso 2.2" << std::endl;
                 Category AuxCategory = getCategory(productJson["categoria"]);
                 Product producto(
                     productJson["id"],
