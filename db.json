@@ -44,7 +44,200 @@
           "price": 2.99,
           "stock": 50,
           "categoria": "Comida"
+        },
+        {
+          "id": 7,
+          "name": "Rueda_Abdominal",
+          "price": 59.99,
+          "stock": 60,
+          "categoria": "Deporte"
+        },
+        {
+          "id": 8,
+          "name": "Soga_de_Velocidad",
+          "price": 99.99,
+          "stock": 50,
+          "categoria": "Deporte"
+        },
+        {
+          
+          "id": 9,
+          "name": "Tomatodo",
+          "price": 18.89,
+          "stock": 50,
+          "categoria": "Deporte"
+        },
+        {
+          
+          "id": 10,
+          "name": "Salta_Soga",
+          "price": 8.99,
+          "stock": 70,
+          "categoria": "Deporte"
+        },
+        {
+          
+          "id": 11,
+          "name": "Bandas_Elasticas",
+          "price": 10.90,
+          "stock": 30,
+          "categoria": "Deporte"
+        },
+        {
+          
+          "id": 12,
+          "name": "Mancuernas_5kg",
+          "price": 49.00,
+          "stock": 40,
+          "categoria": "Deporte"
+        },
+        {
+          
+          "id": 13,
+          "name": "Polo_Manga_Corta",
+          "price": 59.90,
+          "stock": 50,
+          "categoria": "Ropa"
+        },
+        {
+          
+          "id": 14,
+          "name": "Casaca_Casual_Hombre",
+          "price": 77.99,
+          "stock": 35,
+          "categoria": "Ropa"
+        },
+        {
+          
+          "id": 15,
+          "name": "Jean_Slim_Hombre",
+          "price": 71.99,
+          "stock": 45,
+          "categoria": "Ropa"
+        },
+        {
+          
+          "id": 16,
+          "name": "Blusa_Casual_Mujer",
+          "price": 99.90,
+          "stock": 55,
+          "categoria": "Ropa"
+        },
+        {
+          
+          "id": 17,
+          "name": "Falda_Larga_Mujer",
+          "price": 79.90,
+          "stock": 35,
+          "categoria": "Ropa"
+        },
+        {
+          
+          "id": 18,
+          "name": "Casaca_Acolchada_Mujer",
+          "price": 114.95,
+          "stock": 30,
+          "categoria": "Ropa"
+        },
+        {
+          
+          "id": 19,
+          "name": "Estante_Plastico",
+          "price": 149.90 ,
+          "stock": 55,
+          "categoria": "Hogar"
+        },
+        {
+          
+          "id": 20,
+          "name": "Armario",
+          "price": 279.90 ,
+          "stock": 30,
+          "categoria": "Hogar"
+        },
+        {
+          
+          "id": 21,
+          "name": "Futon_Negro",
+          "price": 290.99 ,
+          "stock": 35,
+          "categoria": "Hogar"
+        },
+        {
+          
+          "id": 22,
+          "name": "Espejo_Decorativo",
+          "price": 29.90 ,
+          "stock": 40,
+          "categoria": "Hogar"
+        },
+        {
+          
+          "id": 23,
+          "name": "Escritorio",
+          "price": 199.90 ,
+          "stock": 45,
+          "categoria": "Hogar"
+        },
+        {
+          
+          "id": 24,
+          "name": "Mesa_de_TV",
+          "price": 399.90 ,
+          "stock": 50,
+          "categoria": "Hogar"
+        },
+        {
+          
+          "id": 25,
+          "name": "Oximetro",
+          "price": 59.90 ,
+          "stock": 70,
+          "categoria": "Salud"
+        },
+        {
+          
+          "id": 26,
+          "name": "Alcohol_en_Gel",
+          "price": 9.90 ,
+          "stock": 90,
+          "categoria": "Salud"
+        },
+        {
+          
+          "id": 27,
+          "name": "Muletas_Aluminio",
+          "price": 127.99 ,
+          "stock": 50,
+          "categoria": "Salud"
+        },
+        {
+          
+          "id": 28,
+          "name": "Andador_Adulto_de_Ortopedia",
+          "price": 399.99,
+          "stock": 40,
+          "categoria": "Salud"
+        },
+        {
+          
+          "id": 29,
+          "name": "Glucometro",
+          "price": 144.80,
+          "stock": 60,
+          "categoria": "Salud"
+        },
+        {
+          
+          "id": 30,
+          "name": "Mascarillas_KN95",
+          "price": 9.99,
+          "stock": 120,
+          "categoria": "Salud"
         }
+      
+
+
       ],
       "users": [
         {
