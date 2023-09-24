@@ -5,11 +5,13 @@
 #include <string>
 #include "../../utils/router/router.h"
 
-class FormRegister {
+class FormRegister
+{
 public:
     FormRegister() {}
 
-    void mostrarFormulario() {
+    void mostrarFormulario(JsonDatabase db)
+    {
         std::string nombreUsuario;
         std::string correoUsuario;
         std::string contrasena;
@@ -24,20 +26,35 @@ public:
         std::cin >> correoUsuario;
 
         // Solicitar contraseña y confirmar contraseña
-        do {
+        do
+        {
             std::cout << "Ingrese la contraseña: ";
             std::cin >> contrasena;
 
             std::cout << "Confirme la contraseña: ";
             std::cin >> confirmarContrasena;
 
-            if (contrasena != confirmarContrasena) {
+            if (contrasena != confirmarContrasena)
+            {
                 std::cout << "Las contraseñas no coinciden. Intente nuevamente.\n";
             }
         } while (contrasena != confirmarContrasena);
 
-        // Aquí puedes realizar el registro del usuario con los datos ingresados
-        // Por ejemplo, podrías almacenarlos en una base de datos o en un archivo.
+        try
+        {
+            // Código que puede generar una excepción
+            db.createUser(correoUsuario, contrasena, nombreUsuario, 0.0, "user", false);
+            // Después de agregar el usuario, guarda los cambios en la base de datos JSON.
+            if (!db.save())
+            {
+                std::cerr << "No se pudo guardar la base de datos." << std::endl;
+            }
+        }
+        catch (const std::exception &e)
+        {
+            // Manejo de la excepción
+            std::cerr << "Error: " << e.what() << std::endl;
+        }
 
         std::cout << "Registro exitoso. Usuario registrado:\n";
         std::cout << "Nombre de usuario: " << nombreUsuario << "\n";

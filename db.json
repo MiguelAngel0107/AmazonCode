@@ -2,18 +2,31 @@
     "config": "",
     "db": {
         "tables": {
-            "products": [
-                
-            ],
+            "products": [],
             "users": [
                 {
-                    "email": "miguel@example.com",
-                    "id": 275813,
-                    "money": 1000.0,
-                    "name": "Nombre del Usuario",
-                    "password": "contrasena123",
-                    "role": "usuario",
-                    "state": true
+                    "email": "miguel",
+                    "money": 0.0,
+                    "name": "Miugel",
+                    "password": "1234",
+                    "role": "user",
+                    "state": false
+                },
+                {
+                    "email": "gabreil",
+                    "money": 0.0,
+                    "name": "Gabruiel",
+                    "password": "1234",
+                    "role": "user",
+                    "state": false
+                },
+                {
+                    "email": "angel",
+                    "money": 0.0,
+                    "name": "Angel",
+                    "password": "1234",
+                    "role": "user",
+                    "state": false
                 }
             ]
         }

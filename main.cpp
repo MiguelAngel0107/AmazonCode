@@ -12,14 +12,8 @@ int main()
     std::string databaseFilename = "D:\\2023 Proyectos Mas avanzados\\UpcProyects\\AmazonCode\\db.json";
     // Crear una instancia de JsonDatabase
     JsonDatabase database(databaseFilename);
-    // Cargar la base de datos desde el archivo JSON
-    if (!database.load())
-    {
-        std::cerr << "No se pudo cargar la base de datos." << std::endl;
-        return 1; // Salir con código de error
-    }
 
-    std::cout<<"Algo paso 1";
+    std::cout << "Algo paso 1";
 
     int opcion;
     Menu menuBar;
@@ -29,6 +23,13 @@ int main()
 
     while (true)
     {
+        // Cargar la base de datos desde el archivo JSON
+        if (!database.load())
+        {
+            std::cerr << "No se pudo cargar la base de datos." << std::endl;
+            return 1; // Salir con código de error
+        }
+
         if (authSession.getState())
         {
             menuBar.mostrarMenuAuthenticated();
@@ -57,12 +58,12 @@ int main()
         case 2:
             if (authSession.getState())
             {
-                registerInstance.mostrarFormulario();
+                registerInstance.mostrarFormulario(database);
                 break;
             }
             else
             {
-                registerInstance.mostrarFormulario();
+                registerInstance.mostrarFormulario(database);
                 break;
             }
             break;
