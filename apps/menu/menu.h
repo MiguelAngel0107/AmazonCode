@@ -13,7 +13,7 @@ public:
     {
         std::cout << "***********************" << std::endl;
         std::cout << "     Bienvenido a" << std::endl;
-        std::cout << "        Amazon" << std::endl;
+        std::cout << "        Ermes" << std::endl;
         std::cout << "***********************" << std::endl;
         std::cout << std::setw(2) << "1. " << std::left << std::setw(20) << "Iniciar Sesión" << std::setw(5) << "->" << std::endl;
         std::cout << std::setw(2) << "2. " << std::left << std::setw(20) << "Registrarse" << std::setw(5) << "->" << std::endl;
@@ -25,7 +25,7 @@ public:
     {
         std::cout << "***********************" << std::endl;
         std::cout << "     Bienvenido a" << std::endl;
-        std::cout << "        Amazon" << std::endl;
+        std::cout << "        Ermes" << std::endl;
         std::cout << "***********************" << std::endl;
         std::cout << std::setw(2) << "1. " << std::left << std::setw(20) << "Perfil" << std::setw(5) << "->" << std::endl;
         std::cout << std::setw(2) << "2. " << std::left << std::setw(20) << "Carrito de Compras" << std::setw(5) << "->" << std::endl;
