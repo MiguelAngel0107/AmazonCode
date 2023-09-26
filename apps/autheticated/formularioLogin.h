@@ -29,16 +29,16 @@ public:
 
         auto funcionAuxiliar = [&](const User &usuario)
         {
-            //std::cout << "*********************Entre a la Call Funcion**********************" << std::endl;
-            //std::cout << usuario.getEmail() << std::endl;
-            //std::cout << usuario.getId() << std::endl;
-            //std::cout << usuario.getMoney() << std::endl;
-            //std::cout << usuario.getName() << std::endl;
-            //std::cout << usuario.getPassword() << std::endl;
-            //std::cout << usuario.getRole() << std::endl;
-            //std::cout << usuario.getState() << std::endl;
+            // std::cout << "*********************Entre a la Call Funcion**********************" << std::endl;
+            // std::cout << usuario.getEmail() << std::endl;
+            // std::cout << usuario.getId() << std::endl;
+            // std::cout << usuario.getMoney() << std::endl;
+            // std::cout << usuario.getName() << std::endl;
+            // std::cout << usuario.getPassword() << std::endl;
+            // std::cout << usuario.getRole() << std::endl;
+            // std::cout << usuario.getState() << std::endl;
 
-            if (usuario.getEmail() == correo)
+            if (usuario.getName() == correo)
             {
                 std::cout << "Ingrese su contraseña: ";
                 std::cin >> contraseña;

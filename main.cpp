@@ -17,7 +17,7 @@
 int main()
 {
     // Nombre del archivo JSON
-    std::string databaseFilename = "D:\\2023 Proyectos Mas avanzados\\UpcProyects\\AmazonCode\\db.json";
+    std::string databaseFilename = "C:\\Users\\migue\\Documents\\GitHub\\AmazonCode\\db.json";
     // Crear una instancia de JsonDatabase
     JsonDatabase database(databaseFilename);
 

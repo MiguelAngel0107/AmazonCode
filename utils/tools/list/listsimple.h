@@ -47,6 +47,7 @@ public:
         NodoComplejo<typeValue> *actual = cabeza;
         while (actual)
         {
+            //std::cout<<"nombre: "<<actual->valor.getEmail();
             if (callback(actual->valor)) return true;
             actual = actual->siguiente;
         }

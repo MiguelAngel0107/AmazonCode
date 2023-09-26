@@ -90,14 +90,15 @@ public:
 
         auto funcionAuxiliar = [&](const std::vector<Product> &productoAux)
         {
-            std::cout << "======================================" << std::endl;
-            std::cout << "|   Nombre   |   Precio   |   Stock   |" << std::endl;
-            std::cout << "======================================" << std::endl;
+            std::cout << "===================================================" << std::endl;
+            std::cout << "|   Nombre   |   Precio   |   Stock   |   ID   |" << std::endl;
+            std::cout << "===================================================" << std::endl;
             for (const Product &producto : productoAux)
             {
                 std::cout << "| " << std::left << std::setw(11) << producto.getName()
                           << "| $" << std::left << std::setw(10) << std::fixed << std::setprecision(2) << producto.getPrice()
-                          << "| " << std::left << std::setw(8) << producto.getStock() << "|" << std::endl;
+                          << "| " << std::left << std::setw(8) << producto.getStock()
+                          << "| " << std::left << std::setw(8) << producto.getId() << "|" << std::endl;
             }
 
             return false;
