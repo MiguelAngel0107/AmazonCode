@@ -119,6 +119,17 @@ int main()
                 std::cout << "Opción inválida. Intente nuevamente." << std::endl;
                 break;
             }
+        case 6:
+            if (authSession.getState())
+            {
+                authSession.logout();
+                break;
+            }
+            else
+            {
+                std::cout << "Opción inválida. Intente nuevamente." << std::endl;
+                break;
+            }
         default:
             std::cout << "Opción inválida. Intente nuevamente." << std::endl;
             break;

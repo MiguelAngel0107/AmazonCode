@@ -8,19 +8,25 @@
 
 #include "../producto/controller.h"
 #include "../usuario/controller.h"
+#include "../inventory/controller.h"
 
 class CajaDeCobranza
 {
 private:
-    std::vector<Product> inventario;
+    Inventory &inventario;  // Referencia al inventario
 
 public:
-    CajaDeCobranza(const std::vector<Product> &inventario) : inventario(inventario) {}
+    CajaDeCobranza(Inventory &inventario) : inventario(inventario) {}
 
     bool procesarCompra(User &usuario, const std::string &nombreProducto, int cantidad)
     {
         // Buscar el producto en el inventario
-        for (Product &producto : inventario)
+        inventario.searchProductByName(nombreProducto);
+
+        // Obtener el inventario actualizado
+        std::vector<Product> &inventarioProductos = inventario.obtenerInventario();
+
+        for (Product &producto : inventarioProductos)
         {
             if (producto.getName() == nombreProducto)
             {
@@ -43,6 +49,10 @@ public:
                         producto.setStock(temp);
 
                         std::cout << "Compra exitosa. Nuevo saldo del usuario: $" << usuario.getMoney() << std::endl;
+
+                        // Actualizar el stock del producto en el inventario
+                        inventario.updateStock(producto.getId(), temp);
+
                         return true;
                     }
                     else
@@ -63,5 +73,4 @@ public:
         return false;
     }
 };
-
 #endif

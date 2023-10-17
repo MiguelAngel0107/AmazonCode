@@ -263,6 +263,24 @@
                     "password": "123",
                     "role": "user",
                     "state": false
+                },
+                {
+                    "email": "juan",
+                    "id": 277504,
+                    "money": 0.0,
+                    "name": "juan",
+                    "password": "1234",
+                    "role": "user",
+                    "state": false
+                },
+                {
+                    "email": "jorge",
+                    "id": 92447,
+                    "money": 0.0,
+                    "name": "jorge",
+                    "password": "1234",
+                    "role": "user",
+                    "state": false
                 }
             ]
         }

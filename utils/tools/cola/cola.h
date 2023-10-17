@@ -11,7 +11,7 @@ public:
     Cola() : frente(nullptr), final(nullptr) {}
 
     // Agregar un elemento al final de la cola
-    void enqueue(int val) {
+    void enqueue(C val) {
         NodoComplejo<C>* nuevoNodo = new NodoComplejo<C>(val);
         if (!frente) {
             frente = final = nuevoNodo;
@@ -22,17 +22,27 @@ public:
     }
 
     // Sacar un elemento del frente de la cola
-    int dequeue() {
+    C dequeue() {
         if (isEmpty()) {
             std::cerr << "La cola está vacía." << std::endl;
             return -1; // Valor de error
         }
 
         NodoComplejo<C>* temp = frente;
-        int valor = temp->valor;
+        C valor = temp->valor;
         frente = frente->siguiente;
         delete temp;
         return valor;
+    }
+
+    void display() const {
+    NodoComplejo<C>* current = frente;
+        std::cout << "Elementos en la cola: ";
+        while (current != nullptr) {
+            std::cout << current->valor << " ";
+            current = current->siguiente;
+        }
+        std::cout << std::endl;
     }
 
     // Verificar si la cola está vacía
