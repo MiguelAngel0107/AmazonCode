@@ -29,6 +29,11 @@ public:
         return category;
     };
 
+    int getId() const
+    {
+        return id;
+    };
+
     void setStock(int newstock)
     {
         stock = newstock;
