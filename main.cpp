@@ -17,7 +17,7 @@
 int main()
 {
     // Nombre del archivo JSON
-    std::string databaseFilename = "D:\\2023 Proyectos Mas avanzados\\UpcProyects\\AmazonCode\\db.json";
+    std::string databaseFilename = "C:\\Users\\migue\\Documents\\GitHub\\AmazonCode\\db.json";
     // Crear una instancia de JsonDatabase
     JsonDatabase database(databaseFilename);
 
@@ -85,14 +85,14 @@ int main()
             }
             break;
         case 3:
-            std::cout << "Tiene en mente el nombre de algun producto --> Y:si | N:no" << std::endl;
+            std::cout << "\t" << "\t" << "\t" << "\t" << "\t" <<  "Tiene en mente el nombre de algun producto --> Y:si | N:no" << std::endl;
             std::cin >> opcionChar;
             switch (opcionChar)
             {
             case 'Y':
             case 'y':
                 /* Código para cuando selecciona 'Y' o 'y' */
-                std::cout << "Por favor ingrese el nombre del producto que desea:" << std::endl;
+                std::cout << "\t" << "\t" << "\t" << "\t" << "\t" <<  "Por favor ingrese el nombre del producto que desea:" << std::endl;
                 std::cin >> txt;
                 break;
             case 'N':
@@ -116,16 +116,27 @@ int main()
             }
             else
             {
-                std::cout << "Opción inválida. Intente nuevamente." << std::endl;
+                std::cout << "\t" << "\t" << "\t" << "\t" << "\t" <<  "Opción inválida. Intente nuevamente." << std::endl;
+                break;
+            }
+        case 6:
+            if (authSession.getState())
+            {
+                authSession.logout();
+                break;
+            }
+            else
+            {
+                std::cout << "\t" << "\t" << "\t" << "\t" << "\t" <<  "Opción inválida. Intente nuevamente." << std::endl;
                 break;
             }
         default:
-            std::cout << "Opción inválida. Intente nuevamente." << std::endl;
+            std::cout << "\t" << "\t" << "\t" << "\t" << "\t" <<  "Opción inválida. Intente nuevamente." << std::endl;
             break;
         }
 
         // Pausa para que el usuario vea el resultado antes de mostrar el menú nuevamente
-        std::cout << "Presione Enter para continuar..." << std::endl
+        std::cout << "\t" << "\t" << "\t" << "\t" << "\t" <<  "Presione Enter para continuar..." << std::endl
                   << std::endl;
         std::cin.ignore(); // Limpia el búfer del teclado
         std::cin.get();    // Espera a que el usuario presione Enter

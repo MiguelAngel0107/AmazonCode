@@ -12,6 +12,10 @@ class Product
 public:
     Product(int id, const std::string &name, double price, int stock, const Category &category) : id(id), name(name), price(price), stock(stock), category(category){};
 
+    int getId() const
+    {
+        return id;
+    }
     std::string getName() const
     {
         return name;

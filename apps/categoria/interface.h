@@ -31,19 +31,18 @@ public:
     {
         categories = db.getCategories();
 
-        std::cout << "=================================================================================================" << std::endl;
-        std::cout << "Categorías disponibles:" << std::endl;
-        std::cout << "=================================================================================================" << std::endl;
+        std::cout << "\t" << "\t" << "=================================================================================================" << std::endl;
+        std::cout << "\t" << "\t" << "\t"  << "\t" << "\t" << "\t" << "CATEGORIAS DISPONIBLES" << std::endl;
+        std::cout << "\t" << "\t" << "=================================================================================================" << std::endl;
 
         for (const Category &category : categories)
         {
-            std::cout << " | " << category.getId() << ". " << category.getName() << "  ";
+            std::cout << "\n" << "\t" << "\t" << "\t" << " | " << category.getId() << ". " << category.getName() << "  ";
         }
 
-        std::cout << std::endl
-                  << "=================================================================================================" << std::endl
+        std::cout << "\t" << "\t" << "=================================================================================================" << std::endl
                   << std::endl;
-        std::cout << "Tu opcion es -->    ";
+        std::cout << "\t" << "\t" << "\t" << "\t" << "\t" <<  "Tu opcion es -->    ";
         std::cin >> option;
 
         switch (option)
@@ -70,34 +69,33 @@ public:
 
         productoByCategory = db.getProductsByCategory(catSelect);
 
-        std::cout
-            << "=================================================================================================" << std::endl;
-        std::cout << "Formas de Orden disponibles:" << std::endl;
-        std::cout << "=================================================================================================" << std::endl;
+        std::cout << "\t" << "\t" << "=================================================================================================" << std::endl;
+        std::cout << "\t" << "\t" << "\t"  << "\t" << "\t" << "\t" << "FORMAS DE ORDEN DISPONIBLES" << std::endl;
+        std::cout << "\t" << "\t" << "=================================================================================================" << std::endl;
 
-        std::vector<std::string> ord = {"MejorPrecio", "MasPopular", "MasVendido"};
+        std::vector<std::string> ord = {"MejorPrecio", "MasPopular", "Alfabeticamente"};
 
         for (int i = 0; i < 3; i++)
         {
             std::cout << " | " << i << ". " << ord[i] << "  ";
         }
 
-        std::cout << std::endl
-                  << "=================================================================================================" << std::endl
+        std::cout << "\t" << "\t" << "=================================================================================================" << std::endl
                   << std::endl;
-        std::cout << "Tu opcion es -->    ";
+        std::cout << "\t" << "\t" << "\t" << "\t" << "\t" <<  "Tu opcion es -->    ";
         std::cin >> optionOrd;
 
         auto funcionAuxiliar = [&](const std::vector<Product> &productoAux)
         {
-            std::cout << "======================================" << std::endl;
-            std::cout << "|   Nombre   |   Precio   |   Stock   |" << std::endl;
-            std::cout << "======================================" << std::endl;
+            std::cout << "\t" << "\t" << "\t" << "\t" << "\t" << "===================================================" << std::endl;
+            std::cout << "\t" << "\t" << "\t" << "\t" << "\t" << "|   NOMBRE   |   PRECIO  |   STOCK   |     ID     |" << std::endl;
+            std::cout << "\t" << "\t" << "\t" << "\t" << "\t" << "===================================================" << std::endl;
             for (const Product &producto : productoAux)
             {
-                std::cout << "| " << std::left << std::setw(11) << producto.getName()
+                std::cout << "\t" << "\t" << "\t" << "\t" << "\t" << std::left << std::setw(11) << producto.getName()
                           << "| $" << std::left << std::setw(10) << std::fixed << std::setprecision(2) << producto.getPrice()
-                          << "| " << std::left << std::setw(8) << producto.getStock() << "|" << std::endl;
+                          << "| " << std::left << std::setw(8) << producto.getStock()
+                          << "| " << std::left << std::setw(8) << producto.getId() << "|" << std::endl;
             }
 
             return false;
@@ -116,9 +114,14 @@ public:
         case 1:
             algorithms.ordenarPorStock(productoByCategory);
             funcionAuxiliar(productoByCategory);
+            std::cin >> op;
+            cart.agregarProducto(op, db);
             break;
         case 2:
+            algorithms.ordenarAlfabeticamente(productoByCategory);
             funcionAuxiliar(productoByCategory);
+            std::cin >> op;
+            cart.agregarProducto(op, db);
             break;
         default:
             break;

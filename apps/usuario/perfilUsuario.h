@@ -27,16 +27,15 @@ public:
     // Función para imprimir el perfil del usuario en la consola
     void imprimirPerfil() const
     {
-        std::cout << std::endl
-                  << "=================================================================================================" << std::endl;
-        std::cout << "Información del perfil de usuario:" << std::endl;
-        std::cout << "Correo: " << user.getEmail() << std::endl;
-        std::cout << "ID de usuario: " << user.getId() << std::endl;
-        std::cout << "Dinero de usuario: $" << user.getMoney() << std::endl;
-        std::cout << "Nombre de usuario: " << user.getName() << std::endl;
-        std::cout << std::endl
-                  << "=================================================================================================" << std::endl;
-    }
+        std::cout << "\t" << "\t" << "=================================================================================================" << std::endl;
+        std::cout << "\t" << "\t" << "\t"  << "\t" << "\t" << "\t" << "INFORMACION DE PERFIL DE USUARIO" << std::endl;
+        std::cout << "\t" << "\t" << "=================================================================================================" << std::endl;
+        std::cout << "\n" << "\n" << "\t" << "\t" << "\t" << "Correo: " << user.getEmail() << std::endl;
+        std::cout << "\n" << "\n" << "\t" << "\t" << "\t" << "ID de usuario: " << user.getId() << std::endl;
+        std::cout << "\n" << "\n" << "\t" << "\t" << "\t" << "Dinero de usuario: $" << user.getMoney() << std::endl;
+        std::cout << "\n" << "\n" << "\t" << "\t" << "\t" <<"Nombre de usuario: " << user.getName() << std::endl;
+        std::cout << "\t" << "\t" << "=================================================================================================" << std::endl;
+        }
 
 private:
     User user;
