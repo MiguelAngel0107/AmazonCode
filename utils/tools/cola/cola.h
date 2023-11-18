@@ -11,7 +11,7 @@ public:
     Cola() : frente(nullptr), final(nullptr) {}
 
     // Agregar un elemento al final de la cola
-    void enqueue(int val) {
+    void enqueue(const C& val) {
         NodoComplejo<C>* nuevoNodo = new NodoComplejo<C>(val);
         if (!frente) {
             frente = final = nuevoNodo;
@@ -22,14 +22,14 @@ public:
     }
 
     // Sacar un elemento del frente de la cola
-    int dequeue() {
+    C dequeue() {
         if (isEmpty()) {
             std::cerr << "La cola está vacía." << std::endl;
-            return -1; // Valor de error
+            return C(); // Retornar un objeto C por defecto
         }
 
         NodoComplejo<C>* temp = frente;
-        int valor = temp->valor;
+        C valor = temp->valor;
         frente = frente->siguiente;
         delete temp;
         return valor;
@@ -40,7 +40,42 @@ public:
         return frente == nullptr;
     }
 
-    // Liberar la memoria de la cola
+    // Buscar un producto en la cola por un criterio (sin desencolar)
+    C search(const std::string& criteria, bool& found) {
+        NodoComplejo<C>* actual = frente;
+        while (actual != nullptr) {
+            if (actual->valor.getName() == criteria) { // Asumiendo que C tiene el método getName()
+                found = true;
+                return actual->valor;
+            }
+            actual = actual->siguiente;
+        }
+        found = false;
+        return C(); // Retornar un objeto C por defecto si no se encuentra
+    }
+
+    // Actualizar el stock de un producto en la cola
+    bool updateStock(int productId, int newStock) {
+        NodoComplejo<C>* actual = frente;
+        while (actual != nullptr) {
+            if (actual->valor.getId() == productId) { // Asumiendo que C tiene el método getId() y setStock()
+                actual->valor.setStock(newStock);
+                return true;
+            }
+            actual = actual->siguiente;
+        }
+        return false;
+    }
+
+    // Método para mostrar todos los elementos en la cola
+    void display() const {
+        NodoComplejo<C>* actual = frente;
+        while (actual != nullptr) {
+            std::cout << actual->valor << std::endl; // Asumiendo que C tiene un operador de salida sobrecargado
+            actual = actual->siguiente;
+        }
+    }
+
     ~Cola() {
         while (!isEmpty()) {
             dequeue();

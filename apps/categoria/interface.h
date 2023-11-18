@@ -118,10 +118,10 @@ public:
             cart.agregarProducto(op, db);
             break;
         case 2:
-            algorithms.ordenarAlfabeticamente(productoByCategory);
+            //algorithms.ordenarAlfabeticamente(productoByCategory);
             funcionAuxiliar(productoByCategory);
-            std::cin >> op;
-            cart.agregarProducto(op, db);
+            //std::cin >> op;
+            //cart.agregarProducto(op, db);
             break;
         default:
             break;

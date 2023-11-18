@@ -13,6 +13,8 @@
 #include "apps/categoria/interface.h"
 #include "apps/producto/interface.h"
 #include "apps/cart/controller.h"
+#include "apps/search/controller.hpp"
+#include "apps/payment/controller.h"
 
 int main()
 {
@@ -35,8 +37,10 @@ int main()
     CategoryDisplay categorias;
     ProductList listaProductos;
     Cart carrito;
+    CajaDeCobranza caja(database.getAllProducts());
 
     PerfilUsuario perfil(1, "", "", "", 0.0, "", false);
+    User& usuario = perfil.obtenerUsuario();
 
     while (true)
     {
@@ -75,7 +79,7 @@ int main()
         case 2:
             if (authSession.getState())
             {
-                carrito.mostrarCarrito();
+                carrito.mostrarCarrito(usuario,caja);
                 break;
             }
             else
@@ -94,6 +98,14 @@ int main()
                 /* Código para cuando selecciona 'Y' o 'y' */
                 std::cout << "\t" << "\t" << "\t" << "\t" << "\t" <<  "Por favor ingrese el nombre del producto que desea:" << std::endl;
                 std::cin >> txt;
+
+                try {
+                    SearchTablaHash tabla(123); // Crear tabla hash con clave 123
+                    Producto p = tabla.buscarProducto(txt);
+                    tabla.mostrarProducto(p);
+                } catch (const std::exception& e) {
+                    std::cerr << e.what() << '\n';
+                }
                 break;
             case 'N':
             case 'n':

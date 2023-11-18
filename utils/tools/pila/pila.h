@@ -55,6 +55,13 @@ public:
         std::cout << std::endl;
     }
 
+    C& top() {
+    if (isEmpty()) {
+        throw std::runtime_error("La pila está vacía");
+    }
+    return tope->valor; // Usa 'tope' en lugar de 'frente'
+}
+
     // Liberar la memoria de la pila
     ~Pila()
     {

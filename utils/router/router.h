@@ -84,7 +84,7 @@ public:
 
     bool createUser(const std::string &email, const std::string &password, const std::string &name, double money, const std::string &role, bool state)
     {
-        //std::cout << "Entre a la funcion Create 1" << std::endl;
+        // std::cout << "Entre a la funcion Create 1" << std::endl;
         if (!userExists(email))
         {
             // Genera un ID único para el nuevo producto
@@ -99,7 +99,7 @@ public:
                                                          {"money", money},
                                                          {"role", role},
                                                          {"state", state}});
-            //std::cout << "Entre a la funcion Create 2" << std::endl;
+            // std::cout << "Entre a la funcion Create 2" << std::endl;
 
             // Después de agregar el usuario, guarda los cambios en la base de datos JSON.
             if (!save())
@@ -175,10 +175,10 @@ public:
     {
         ListaEnlazada<User> listaUsuarios;
 
-        //std::cout << "Algo paso getUsers 2.1" << std::endl;
+        // std::cout << "Algo paso getUsers 2.1" << std::endl;
         for (const auto &userJson : database["db"]["tables"]["users"])
         {
-            //std::cout << "Algo paso 2.2" << std::endl;
+            // std::cout << "Algo paso 2.2" << std::endl;
             User user(
                 userJson["id"],
                 userJson["email"],
@@ -190,7 +190,7 @@ public:
 
             listaUsuarios.agregar(user);
         }
-        //std::cout << "Algo paso getUsers 2.3" << std::endl;
+        // std::cout << "Algo paso getUsers 2.3" << std::endl;
         return listaUsuarios;
     }
 
@@ -200,7 +200,7 @@ public:
 
         for (const auto &categoriaJson : database["db"]["tables"]["categories"])
         {
-            //std::cout << "Algo paso 2.2" << std::endl;
+            // std::cout << "Algo paso 2.2" << std::endl;
             Category categiaAux(
                 categoriaJson["id"],
                 categoriaJson["name"]);
@@ -264,6 +264,27 @@ public:
 
                 productsBy.push_back(producto);
             }
+        }
+
+        return productsBy;
+    }
+
+    std::vector<Product> getAllProducts()
+    {
+        std::vector<Product> productsBy;
+
+        for (const auto &productJson : database["db"]["tables"]["products"])
+        {
+            // std::cout << "Algo paso 2.2" << std::endl;
+            Category AuxCategory = getCategory(productJson["categoria"]);
+            Product producto(
+                productJson["id"],
+                productJson["name"],
+                productJson["price"],
+                productJson["stock"],
+                AuxCategory);
+
+            productsBy.push_back(producto);
         }
 
         return productsBy;

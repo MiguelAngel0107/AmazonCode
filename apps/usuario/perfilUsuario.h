@@ -37,6 +37,9 @@ public:
         std::cout << "\t" << "\t" << "=================================================================================================" << std::endl;
         }
 
+    User& obtenerUsuario() {
+        return user;
+    }
 private:
     User user;
 };

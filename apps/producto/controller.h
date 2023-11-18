@@ -32,12 +32,6 @@ public:
     {
         return category;
     };
-
-    int getId() const
-    {
-        return id;
-    };
-
     void setStock(int newstock)
     {
         stock = newstock;
@@ -53,6 +47,10 @@ public:
         };
         return productJson;
     };
+    // Sobrecarga del operador '<'
+    bool operator<(const Product& other) const {
+        return this->id < other.id; // Comparar basado en el ID, por ejemplo
+    }
 
 private:
     int id;
